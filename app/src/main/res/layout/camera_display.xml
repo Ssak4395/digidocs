@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF">
@@ -9,23 +10,50 @@
         android:id="@+id/imageView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/screen_shot_2020_09_18_at_11_10_49_pm" />
 
     <ImageView
-        android:id="@+id/imageView18"
+        android:id="@+id/imageView26"
+        android:layout_width="172dp"
+        android:layout_height="132dp"
+        android:tint="#151414"
+        app:layout_constraintBottom_toTopOf="@+id/textView12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView27"
+        app:srcCompat="@drawable/ic_baseline_add_a_photo_24" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="299dp"
+        android:text="CLICK THE ICON TO SCAN"
+        android:textColor="#050505"
+        app:layout_constraintBottom_toTopOf="@+id/imageView19"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView26"
+        app:layout_constraintVertical_bias="0.207" />
+
+    <ImageView
+        android:id="@+id/imageView27"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView26"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView26"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/screen_shot_2020_09_18_at_11_03_32_pm" />
+        app:srcCompat="@drawable/screen_shot_2020_09_20_at_1_41_59_am" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
