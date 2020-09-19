@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "432008597002",
+    "firebase_url": "https://digidocs-742e9.firebaseio.com",
+    "project_id": "digidocs-742e9",
+    "storage_bucket": "digidocs-742e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:432008597002:android:c9889776bc814aaa4d59f3",
+        "android_client_info": {
+          "package_name": "com.example.digitaldocs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "432008597002-2u90d9t387oqo7pl70j7q5j0s8lfioep.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.digitaldocs",
+            "certificate_hash": "6318efd25c232cbe30f35c88465025b9029a0694"
+          }
+        },
+        {
+          "client_id": "432008597002-dkgd3i5f4i9b9rj0m6estrp9fs47eg8r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2YLIHh39lvW6z4-Z1rr2DV4UPifd5Q5Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "432008597002-dkgd3i5f4i9b9rj0m6estrp9fs47eg8r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
