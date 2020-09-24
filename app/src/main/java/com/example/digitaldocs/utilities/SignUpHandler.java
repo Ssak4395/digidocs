@@ -44,7 +44,7 @@ public class SignUpHandler {
                     documentReference.set(users).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            System.out.println("Data Successfully persisted.");
+                            System.out.println("");
                         }
                     });
 
