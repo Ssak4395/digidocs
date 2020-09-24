@@ -1,18 +1,26 @@
 package com.example.digitaldocs.activities;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.digitaldocs.R;
-import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -22,10 +30,14 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private static final boolean AUTO_HIDE = true;
-    private TextInputLayout textInputEmail;
-    private TextInputLayout textInputPassword;
+    public static Context context;
+    private EditText textInputEmail;
+    private EditText textInputPassword;
     private TextView sign_up_prompt;
     Button sign_in_prompt;
+    Button signin;
+    FirebaseAuth firebaseAuth;
+
 
 
 
@@ -43,11 +55,22 @@ public class HomeActivity extends AppCompatActivity {
         this.setContentView(R.layout.activity_home);
         setContentView(R.layout.activity_home);
         mControlsView = findViewById(R.id.container);
-//        firebaseAuth = FirebaseAuth.getInstance();
+        signin = findViewById(R.id.SignIn);
+        firebaseAuth = FirebaseAuth.getInstance();
 
-setScene();
-explodeSignUpScene();
-explodeDashBoardScene();
+      setScene();
+      explodeSignUpScene();
+
+      signin.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              handleSignIn(textInputEmail.getText().toString(),textInputPassword.getText().toString());
+          }
+      });
+
+
+
+
 
 
 
@@ -55,7 +78,7 @@ explodeDashBoardScene();
     }
 
     private boolean validateEmail() {
-        String emailInput = textInputEmail.getEditText().getText().toString().trim();
+        String emailInput = textInputEmail.getText().toString().trim();
 
         if (emailInput.isEmpty()) {
             textInputEmail.setError("Email Address cannot be empty");
@@ -67,7 +90,7 @@ explodeDashBoardScene();
     }
 
     private boolean validatePassword() {
-        String passwordInput = textInputPassword.getEditText().getText().toString().trim();
+        String passwordInput = textInputPassword.getText().toString().trim();
 
         if (passwordInput.isEmpty()) {
             textInputPassword.setError("Password cannot be empty");
@@ -83,31 +106,23 @@ explodeDashBoardScene();
             return;
         }
 
-        String input = "Email: " + textInputEmail.getEditText().getText().toString();
+        String input = "Email: " + textInputEmail.getText().toString();
         input += "\n";
-        input += "Password: " + textInputPassword.getEditText().getText().toString();
+        input += "Password: " + textInputPassword.getText().toString();
 
         Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
     }
 
     private void setScene()
     {
-      textInputEmail = findViewById(R.id.text_input_email);
-      textInputPassword = findViewById(R.id.text_input_password);
+      textInputEmail = findViewById(R.id.email);
+      textInputPassword = findViewById(R.id.password);
       sign_up_prompt = findViewById(R.id.sign_up);
-      sign_in_prompt= findViewById(R.id.LinkToDashboard);
+      sign_in_prompt= findViewById(R.id.SignIn);
     }
     private void explodeDashBoardScene()
     {
-        final Intent intent = new Intent(this, dashboard.class);
 
-        sign_in_prompt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                HomeActivity.this.startActivity(intent);
-
-            }
-        });
     }
 
     private void explodeSignUpScene()
@@ -122,5 +137,43 @@ explodeDashBoardScene();
             }
         });
     }
+
+    public void handleSignIn(String email, String password)
+    {
+
+        final Intent intent = new Intent(this,dashboard.class);
+        firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful())
+                {
+                    if(firebaseAuth.getCurrentUser().isEmailVerified())
+                    {
+                        HomeActivity.this.startActivity(intent);
+                    }else
+                    {
+                        new AlertDialog.Builder(context)
+                                .setTitle("Error")
+                                .setMessage("Please Verify Your Email Address ")
+
+                                // Specifying a listener allows you to take an action before dismissing the dialog.
+                                // The dialog is automatically dismissed when a dialog button is clicked.
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Continue with delete operation
+                                    }
+                                }).show();
+                    }
+                }
+
+
+
+
+
+
+            }
+        });
+    }
+
 
 }

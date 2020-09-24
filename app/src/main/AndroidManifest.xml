@@ -1,43 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.digitaldocs">
+    package="com.example.digitaldocs">
 
-<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-            android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
         <activity
-            android:name="com.example.digitaldocs.activities.Sign_Up_Activity"
+            android:name=".emailVerification"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_email_verification"
+            android:theme="@style/FullscreenTheme"></activity>
+        <activity
+            android:name=".activities.Sign_Up_Activity"
             android:label="@string/app_name" />
         <activity
-            android:name="com.example.digitaldocs.activities.Camera"
+            android:name=".activities.Camera"
             android:label="@string/app_name" />
         <activity
-            android:name="com.example.digitaldocs.activities.Profile"
+            android:name=".activities.Profile"
             android:label="@string/app_name" />
         <activity
-            android:name="com.example.digitaldocs.activities.Settings"
+            android:name=".activities.Settings"
             android:label="@string/app_name" />
         <activity
-            android:name="com.example.digitaldocs.activities.Receipt"
+            android:name=".activities.Receipt"
             android:label="@string/app_name" />
         <activity
-            android:name="com.example.digitaldocs.activities.dashboard"
+            android:name=".activities.dashboard"
             android:label="@string/app_name" />
         <activity
-                android:name=".activities.HomeActivity"
-                android:label="@string/app_name">
+            android:name=".activities.HomeActivity"
+            android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
