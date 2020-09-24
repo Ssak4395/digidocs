@@ -14,7 +14,7 @@
         tools:layout_editor_absoluteY="6dp">
 
         <EditText
-            android:id="@+id/editEmail4"
+            android:id="@+id/editLastName"
             android:layout_width="324dp"
             android:layout_height="56dp"
             android:ems="10"
@@ -31,7 +31,7 @@
             app:layout_constraintVertical_bias="0.346" />
 
         <EditText
-            android:id="@+id/editEmail3"
+            android:id="@+id/editFirstName"
             android:layout_width="324dp"
             android:layout_height="56dp"
             android:ems="10"

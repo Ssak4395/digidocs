@@ -24,6 +24,8 @@ public class Sign_Up_Activity extends AppCompatActivity {
     //SignUpHandler signUpHandler;
     EditText editEmail;
     EditText editPassword;
+    EditText editFirstName;
+    EditText editLastName;
     Button sign_up;
     SignUpHandler signUpHandler;
 
@@ -36,12 +38,17 @@ public class Sign_Up_Activity extends AppCompatActivity {
         editEmail = findViewById(R.id.editEmail);
         editPassword = findViewById(R.id.editPassInput);
         sign_up = findViewById(R.id.sign_up_button);
+        editFirstName = findViewById(R.id.editFirstName);
+        editLastName = findViewById(R.id.editLastName);
+
 
         signUpHandler = new SignUpHandler();
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signUpHandler.signup(editEmail.getText().toString(),editPassword.getText().toString());
+                signUpHandler.signup(editEmail.getText().toString(),editPassword.getText().toString(),
+                        editFirstName.getText().toString(),editLastName.getText().toString()
+                );
             }
         });
 
