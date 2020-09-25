@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/screen_shot_2020_09_18_at_11_10_49_pm" />
 
     <ImageView
-        android:id="@+id/imageView26"
+        android:id="@+id/capture_image_btn"
         android:layout_width="172dp"
         android:layout_height="132dp"
         android:layout_marginBottom="16dp"
