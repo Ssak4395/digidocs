@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -20,6 +21,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.digitaldocs.R;
 
 public class Camera extends AppCompatActivity {
+    private ImageButton camera;
+    private  ImageButton profile;
+    private ImageButton settings;
+    private ImageButton receipt;
 
     private static final int PERMISSION_CODE = 1000;
     private static final int IMAGE_CAPTURE_CODE = 1001;
@@ -30,6 +35,11 @@ public class Camera extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camera_display);
+        setScene();
+        link_camera();
+        link_profile();
+        link_receipt();
+        link_setting();
 
         mCaptureBtn = findViewById(R.id.capture_image_btn);
 
@@ -87,5 +97,63 @@ public class Camera extends AppCompatActivity {
             //send to the ocr algorithm
         }
     }
+    private void setScene()
+    {
+        camera = findViewById(R.id.camera_widget2);
+        profile = findViewById(R.id.profile_widget2);
+        settings = findViewById(R.id.setting_widget2);
+        receipt = findViewById(R.id.receipt_widget2);
+    }
+
+    private void link_camera()
+    {
+        final Intent intent = new Intent(this, Camera.class);
+
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Camera.this.startActivity(intent);
+
+            }
+        });
+    }
+
+    private void link_profile()
+    {
+        final Intent intent = new Intent(this, Profile.class);
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Camera.this.startActivity(intent);
+
+            }
+        });
+    }
+    private void link_setting()
+    {
+        final Intent intent = new Intent(this, Settings.class);
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Camera.this.startActivity(intent);
+
+            }
+        });
+    }
+    private void link_receipt()
+    {
+        final Intent intent = new Intent(this, Receipt.class);
+
+        receipt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              Camera.this.startActivity(intent);
+
+            }
+        });
+    }
+
 
 }

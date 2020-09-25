@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,10 +16,10 @@ import com.example.digitaldocs.R;
 
 public class dashboard extends AppCompatActivity {
 
-    private ImageView camera;
-    private ImageView profile;
-    private ImageView settings;
-    private ImageView receipt;
+    private ImageButton camera;
+    private  ImageButton profile;
+    private ImageButton settings;
+    private ImageButton receipt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,7 @@ public class dashboard extends AppCompatActivity {
 
     private void setScene()
     {
-        camera = findViewById(R.id.cameraWidget);
+        camera = findViewById(R.id.camera_widget);
         profile = findViewById(R.id.profile_widget);
         settings = findViewById(R.id.setting_widget);
         receipt = findViewById(R.id.receipt_widget);
