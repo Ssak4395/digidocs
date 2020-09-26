@@ -3,8 +3,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.digitaldocs.R;
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
+//import android.support.annotation;
+import androidx.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
