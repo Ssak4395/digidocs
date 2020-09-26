@@ -28,7 +28,7 @@ public class Profile extends AppCompatActivity {
      private ImageButton settings;
      private ImageButton receipt;
 
-     private TextView name,email;
+     private TextView name,email,last;
      FirebaseAuth fAuth;
      FirebaseFirestore fStore;
      private String userID;
