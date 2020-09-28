@@ -37,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
     Button sign_in_prompt;
     Button signin;
     FirebaseAuth firebaseAuth;
+    private TextView forgotPassword; 
 
 
 
@@ -60,6 +61,7 @@ public class HomeActivity extends AppCompatActivity {
 
       setScene();
       explodeSignUpScene();
+      explodeForgotPassword();
 
       signin.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -119,11 +121,26 @@ public class HomeActivity extends AppCompatActivity {
       textInputPassword = findViewById(R.id.password);
       sign_up_prompt = findViewById(R.id.sign_up);
       sign_in_prompt= findViewById(R.id.SignIn);
+      forgotPassword= findViewById(R.id.forget_widget); //link the sign up page to the forget pw
     }
     private void explodeDashBoardScene()
     {
 
     }
+    
+    private void explodeForgotPassword()
+    {
+        final Intent intent = new Intent(this, ForgotPassword.class);
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { //linking needed
+                HomeActivity.this.startActivity(intent);
+
+            }
+        });
+    }
+    
 
     private void explodeSignUpScene()
     {
