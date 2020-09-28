@@ -29,6 +29,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
     EditText editLastName;
     Button sign_up;
     LoadingDialog loadingDialog;
+
     SignUpHandler signUpHandler;
 
 
