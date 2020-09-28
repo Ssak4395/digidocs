@@ -34,7 +34,7 @@ public class SignUpHandler {
 
     public boolean  signup(final String Email, String Password, final String FirstName, final String LastName)
     {
-        firebaseAuth.createUserWithEmailAndPassword(Email,Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        firebaseAuth.createUserWithEmailAndPassword(Email.trim(),Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful())
@@ -74,7 +74,11 @@ public class SignUpHandler {
                     }
                 });
                 }
-                else throw new IllegalStateException("Error");
+                else try {
+                    throw task.getException();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 

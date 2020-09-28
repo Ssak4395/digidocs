@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -27,6 +28,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
     EditText editFirstName;
     EditText editLastName;
     Button sign_up;
+    LoadingDialog loadingDialog;
     SignUpHandler signUpHandler;
 
 
@@ -35,6 +37,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign__up_);
 
+        loadingDialog = new LoadingDialog(this);
         signUpHandler = new SignUpHandler();
         editEmail = findViewById(R.id.editEmail);
         editPassword = findViewById(R.id.editPassInput);
@@ -47,16 +50,37 @@ public class Sign_Up_Activity extends AppCompatActivity {
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 signUpHandler.signup(editEmail.getText().toString(),editPassword.getText().toString(),
                         editFirstName.getText().toString(),editLastName.getText().toString()
                 );
+loadingDialog.startLoadingAnimationg();
+//Create new thread to dismiss the loading dialog
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadingDialog.dismissDialog();
+                        //Go Back to sign in page
+                        reloadDashboard();
+                    }
+                },2000);
+
+
+
+
             }
         });
 
     }
 
 
-
+public void reloadDashboard()
+{
+    final Intent intent = new Intent(this,HomeActivity.class);
+    this.startActivity(intent);
+}
 
 
 
