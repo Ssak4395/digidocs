@@ -66,6 +66,7 @@ public class HomeActivity extends AppCompatActivity {
       signin.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
+              System.out.println("Button clicked.");
               handleSignIn(textInputEmail.getText().toString(),textInputPassword.getText().toString());
           }
       });

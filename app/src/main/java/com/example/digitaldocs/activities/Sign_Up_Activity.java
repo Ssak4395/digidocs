@@ -15,7 +15,12 @@ import android.widget.EditText;
 
 import com.example.digitaldocs.R;
 import com.example.digitaldocs.utilities.SignUpHandler;
-//import com.example.digitaldocs.utilities.SignUpHandler;
+import com.example.digitaldocs.utilities.alertDialogs;
+import com.example.digitaldocs.utilities.emailValidator;
+import com.example.digitaldocs.utilities.passwordValidator;
+
+import java.util.regex.Pattern;
+import com.example.digitaldocs.utilities.SignUpHandler;
 
 
 public class Sign_Up_Activity extends AppCompatActivity {
@@ -29,8 +34,11 @@ public class Sign_Up_Activity extends AppCompatActivity {
     EditText editLastName;
     Button sign_up;
     LoadingDialog loadingDialog;
-
+    alertDialogs alertDialogs;
     SignUpHandler signUpHandler;
+    passwordValidator passwordValidator;
+    com.example.digitaldocs.utilities.emailValidator emailValidator;
+
 
 
     @Override
@@ -39,6 +47,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_sign__up_);
 
         loadingDialog = new LoadingDialog(this);
+        alertDialogs = new alertDialogs(this);
         signUpHandler = new SignUpHandler();
         editEmail = findViewById(R.id.editEmail);
         editPassword = findViewById(R.id.editPassInput);
@@ -52,24 +61,20 @@ public class Sign_Up_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
-                signUpHandler.signup(editEmail.getText().toString(),editPassword.getText().toString(),
-                        editFirstName.getText().toString(),editLastName.getText().toString()
-                );
-loadingDialog.startLoadingAnimationg();
-//Create new thread to dismiss the loading dialog
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        loadingDialog.dismissDialog();
-                        //Go Back to sign in page
-                        reloadDashboard();
-                    }
-                },2000);
-
-
-
+                    signUpHandler.signup(editEmail.getText().toString(),editPassword.getText().toString(),
+                            editFirstName.getText().toString(),editLastName.getText().toString()
+                    );
+                    loadingDialog.startLoadingAnimationg();
+                    //Create new thread to dismiss the loading dialog
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            loadingDialog.dismissDialog();
+                            //Go Back to sign in page
+                            reloadDashboard();
+                        }
+                    },2000);
 
             }
         });
