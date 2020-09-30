@@ -51,12 +51,12 @@ public class Sign_Up_Activity extends AppCompatActivity {
         loadingDialog = new LoadingDialog(this);
         alertDialogs = new alertDialogs(this);
         signUpHandler = new SignUpHandler();
+        passwordValidator = new passwordValidator();
         editEmail = findViewById(R.id.editEmail);
         editPassword = findViewById(R.id.editPassInput);
         sign_up = findViewById(R.id.sign_up_button);
         editFirstName = findViewById(R.id.editFirstName);
         editLastName = findViewById(R.id.editLastName);
-
 
         signUpHandler = new SignUpHandler();
         sign_up.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +111,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
 
 public void reloadDashboard()
 {
-    final Intent intent = new Intent(this,HomeActivity.class);
+    final Intent intent = new Intent(this,SignUpConfirmation.class);
     this.startActivity(intent);
 }
 

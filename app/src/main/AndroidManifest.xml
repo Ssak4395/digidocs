@@ -14,10 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".emailVerification"
+            android:name=".activities.SignUpConfirmation"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_email_verification"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".activities.Sign_Up_Activity"
             android:label="@string/app_name" />
