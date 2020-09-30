@@ -174,7 +174,7 @@ public class Profile extends AppCompatActivity {
      private void setScene()
      {
           update = findViewById(R.id.button);
-     exit = findViewById(R.id.LOGOUT);
+     exit = findViewById(R.id.LOGOUTT);
      camera = findViewById(R.id.done);
      profile = findViewById(R.id.dd);
      settings = findViewById(R.id.ee);

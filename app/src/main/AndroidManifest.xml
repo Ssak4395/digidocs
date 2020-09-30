@@ -22,6 +22,12 @@
             android:name=".activities.Sign_Up_Activity"
             android:label="@string/app_name" />
         <activity
+            android:name=".activities.HELP_PAGE"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".activities.LEGAL_UPDATE"
+            android:label="@string/app_name" />
+        <activity
             android:name="com.example.digitaldocs.activities.ForgotPassword"
             android:label="@string/app_name" />
         <activity
