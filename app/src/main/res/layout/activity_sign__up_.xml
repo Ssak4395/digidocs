@@ -130,12 +130,13 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="417dp"
-            android:layout_height="93dp"
+            android:layout_width="436dp"
+            android:layout_height="106dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.52"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/screen_shot_2020_09_18_at_11_03_32_pm" />
+            app:srcCompat="@drawable/screen_shot_2020_09_18_at_11_03_32_pm"
+            tools:layout_editor_absoluteY="-24dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
