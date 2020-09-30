@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.digitaldocs.R;
 import com.example.digitaldocs.utilities.SignUpHandler;
@@ -37,7 +39,7 @@ public class Sign_Up_Activity extends AppCompatActivity {
     alertDialogs alertDialogs;
     SignUpHandler signUpHandler;
     passwordValidator passwordValidator;
-    com.example.digitaldocs.utilities.emailValidator emailValidator;
+    emailValidator emailValidator;
 
 
 
@@ -60,22 +62,47 @@ public class Sign_Up_Activity extends AppCompatActivity {
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                    signUpHandler.signup(editEmail.getText().toString(),editPassword.getText().toString(),
-                            editFirstName.getText().toString(),editLastName.getText().toString()
-                    );
-                    loadingDialog.startLoadingAnimationg();
-                    //Create new thread to dismiss the loading dialog
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            loadingDialog.dismissDialog();
-                            //Go Back to sign in page
-                            reloadDashboard();
-                        }
-                    },2000);
-
+                    boolean validEmail;
+                    boolean validPassword;
+                    if (editEmail.getText().toString().isEmpty()) {
+                        validEmail = false;
+                    } else {
+                        validEmail = com.example.digitaldocs.utilities.emailValidator.validate(editEmail.getText().toString());
+                    }
+                    if (editPassword.getText().toString().isEmpty()) { // avoids null pointer exception in validate method
+                        validPassword = false;
+                    } else {
+                        validPassword = passwordValidator.validate(editPassword.getText().toString());
+                    }
+                    int duration = Toast.LENGTH_LONG;
+                    if (!validEmail) { // invalid email displays error message
+                        Context context = getApplicationContext();
+                        CharSequence text = "Invalid email, please try again.";
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
+                    if (!validPassword) { // invalid password displays error message
+                        Context context = getApplicationContext();
+                        CharSequence text = "Invalid password, please try again.";
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
+                    if (validEmail && validPassword) { // if both are valid we do our normal sign-up routine
+                        signUpHandler.signup(editEmail.getText().toString(),editPassword.getText().toString(),
+                                editFirstName.getText().toString(),editLastName.getText().toString()
+                        );
+                        loadingDialog.startLoadingAnimationg();
+                        //Create new thread to dismiss the loading dialog
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                loadingDialog.dismissDialog();
+                                //Go Back to sign in page
+                                reloadDashboard();
+                            }
+                        },2000);
+                    }
             }
         });
 

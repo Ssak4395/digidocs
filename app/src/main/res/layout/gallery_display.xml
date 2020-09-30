@@ -22,9 +22,9 @@
         android:id="@+id/imageView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:srcCompat="@drawable/screen_shot_2020_09_18_at_11_10_49_pm"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="658dp" />
+        tools:layout_editor_absoluteX="0dp" />
 
     <ImageButton
         android:id="@+id/imageButton"
