@@ -28,6 +28,9 @@
             android:name=".activities.Camera"
             android:label="@string/app_name" />
         <activity
+            android:name=".activities.profile_updateEdit"
+            android:label="@string/app_name" />
+        <activity
             android:name=".activities.Profile"
             android:label="@string/app_name" />
         <activity
