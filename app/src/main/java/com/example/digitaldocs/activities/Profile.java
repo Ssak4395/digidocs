@@ -68,7 +68,7 @@ public class Profile extends AppCompatActivity {
 
 
      name = findViewById(R.id.test);
-     email = findViewById(R.id.test1);
+     //email = findViewById(R.id.test1);
 
 
      fAuth = FirebaseAuth.getInstance();

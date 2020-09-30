@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.161" />
+        app:layout_constraintVertical_bias="0.134" />
 
     <ImageView
         android:id="@+id/imageView21"
@@ -28,18 +28,15 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498"
+        app:layout_constraintVertical_bias="0.419"
         app:srcCompat="@drawable/screen_shot_2020_09_30_at_6_31_43_pm" />
 
     <ImageView
         android:id="@+id/imageView30"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/screen_shot_2020_09_18_at_11_03_32_pm" />
+        android:layout_width="421dp"
+        android:layout_height="99dp"
+        app:srcCompat="@drawable/screen_shot_2020_09_18_at_11_03_32_pm"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-20dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

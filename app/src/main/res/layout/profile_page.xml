@@ -76,19 +76,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.111" />
 
-        <TextView
-            android:id="@+id/test1"
-            android:layout_width="248dp"
-            android:layout_height="33dp"
-            android:textColor="#0B0A0A"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.699"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.179" />
-
         <ImageView
             android:id="@+id/imageView18"
             android:layout_width="121dp"
@@ -238,6 +225,24 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.753"
             app:srcCompat="@drawable/ic_baseline_edit_24" />
+
+        <ImageView
+            android:id="@+id/imageView32"
+            android:layout_width="417dp"
+            android:layout_height="95dp"
+            app:srcCompat="@drawable/screen_shot_2020_09_18_at_11_03_32_pm"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="-23dp" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profile"
+            android:textColor="#020202"
+            android:textSize="24sp"
+            tools:layout_editor_absoluteX="171dp"
+            tools:layout_editor_absoluteY="87dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
