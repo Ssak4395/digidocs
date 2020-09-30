@@ -79,9 +79,9 @@ public class Settings extends AppCompatActivity {
 
     private void setScene()
     {
-        camera = findViewById(R.id.ccc);
-        profile = findViewById(R.id.ddd);
-        settings = findViewById(R.id.eee);
-        receipt = findViewById(R.id.aaa);
+        camera = findViewById(R.id.camera_setting);
+        profile = findViewById(R.id.profile_setting);
+        settings = findViewById(R.id.search_setting);
+        receipt = findViewById(R.id.receipt_setting);
     }
 }
