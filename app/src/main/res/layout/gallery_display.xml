@@ -87,7 +87,7 @@
         android:id="@+id/textView25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gallery"
+        android:text="GALLERY"
         android:textColor="#060D32"
         android:textSize="32sp"
         android:textStyle="bold|italic"
