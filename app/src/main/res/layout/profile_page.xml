@@ -202,11 +202,12 @@
 
         <ImageView
             android:id="@+id/imageView32"
-            android:layout_width="417dp"
-            android:layout_height="95dp"
-            app:srcCompat="@drawable/screen_shot_2020_09_18_at_11_03_32_pm"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="-23dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="66dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/screen_shot_2020_09_18_at_11_03_32_pm" />
 
         <TextView
             android:id="@+id/textView26"
