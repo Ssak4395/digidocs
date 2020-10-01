@@ -89,7 +89,6 @@ public class Profile extends AppCompatActivity {
      @Override
      public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
           name.setText(documentSnapshot.getString("First Name"));
-          email.setText(documentSnapshot.getString("Email"));
 
           firstName.setText(documentSnapshot.getString("First Name"));
           LastName.setText(documentSnapshot.getString("Last Name"));
