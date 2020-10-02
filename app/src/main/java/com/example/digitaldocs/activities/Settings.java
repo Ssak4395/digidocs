@@ -14,6 +14,12 @@ public class Settings extends AppCompatActivity {
     private  ImageButton profile;
     private ImageButton settings;
     private ImageButton receipt;
+
+    private ImageButton legal;
+    private ImageButton help;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +30,8 @@ public class Settings extends AppCompatActivity {
         link_profile();
         link_receipt();
         link_setting();
+        link_help();
+        link_legal();
 
 
     }
@@ -35,6 +43,30 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View view) {
               Settings.this.startActivity(intent);
+
+            }
+        });
+    }
+    private void link_legal()
+    {
+        final Intent intent = new Intent(this, LEGAL_UPDATE.class);
+
+        legal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Settings.this.startActivity(intent);
+
+            }
+        });
+    }
+    private void link_help()
+    {
+        final Intent intent = new Intent(this, HELP_PAGE.class);
+
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Settings.this.startActivity(intent);
 
             }
         });
@@ -78,10 +110,15 @@ public class Settings extends AppCompatActivity {
     }
 
     private void setScene()
+
     {
-        camera = findViewById(R.id.ccc);
-        profile = findViewById(R.id.ddd);
-        settings = findViewById(R.id.eee);
-        receipt = findViewById(R.id.aaa);
+        legal = findViewById(R.id.legal_widget);
+        help = findViewById(R.id.help_widget);
+
+
+        camera = findViewById(R.id.camera_setting);
+        profile = findViewById(R.id.profile_setting);
+        settings = findViewById(R.id.search_setting);
+        receipt = findViewById(R.id.receipt_setting);
     }
 }

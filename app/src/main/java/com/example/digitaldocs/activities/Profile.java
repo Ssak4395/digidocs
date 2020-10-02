@@ -27,6 +27,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 public class Profile extends AppCompatActivity {
 
 
+     private Button exit;
+
      /**
       * FOR NAVIGATION BAR
       *
@@ -55,14 +57,18 @@ public class Profile extends AppCompatActivity {
 
      this.setContentView(R.layout.profile_page);
      setContentView(R.layout.profile_page);
-          setScene();
-          link_camera();
-          link_profile();
-          link_receipt();
-          link_setting();
+     setScene();
+     link_camera();
+     link_profile();
+     link_receipt();
+     link_setting();
+     link_exit();
+     link_update();
+
+
 
      name = findViewById(R.id.test);
-     email = findViewById(R.id.test1);
+     //email = findViewById(R.id.test1);
 
 
      fAuth = FirebaseAuth.getInstance();
@@ -71,9 +77,9 @@ public class Profile extends AppCompatActivity {
 
      firstName = findViewById(R.id.editfirstName);
      LastName = findViewById(R.id.editLastName);
-     userEmail = findViewById(R.id.email);
 
-     update = findViewById(R.id.button);
+
+
      user = fAuth.getCurrentUser();
 
 
@@ -83,75 +89,14 @@ public class Profile extends AppCompatActivity {
      @Override
      public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
           name.setText(documentSnapshot.getString("First Name"));
-          email.setText(documentSnapshot.getString("Email"));
 
-          userEmail.setText(documentSnapshot.getString("Email"));
           firstName.setText(documentSnapshot.getString("First Name"));
           LastName.setText(documentSnapshot.getString("Last Name"));
 
 
      }
      });
-
-
-
-          update.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                    if(firstName.getText().toString().isEmpty()|| LastName.getText().toString().isEmpty() || userEmail.getText().toString().isEmpty()) {
-
-                         Toast.makeText(Profile.this,"You havent made any changes",Toast.LENGTH_SHORT).show();
-                         return;
-
-                    }
-                    final String changeEmail = userEmail.getText().toString();
-                    user.updateEmail(changeEmail).addOnSuccessListener(new OnSuccessListener<Void>() {
-                         @Override
-                         public void onSuccess(Void aVoid) {
-                              DocumentReference docRef = fStore.collection("users").document(user.getUid());
-                              Map<String,Object> edited = new HashMap<>();
-                              edited.put("Email",changeEmail);
-                              edited.put("First Name,",firstName.getText().toString());
-                              edited.put("Last Name,",LastName.getText().toString());
-                              docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                   @Override
-                                   public void onSuccess(Void aVoid) {
-                                        Toast.makeText(Profile.this,"Profile Updated",Toast.LENGTH_SHORT).show();
-                                   }
-                              });
-
-                              Toast.makeText(Profile.this,"EMAIL HAS BEEN CHANGED",Toast.LENGTH_SHORT).show();
-
-
-                         }
-                    }).addOnFailureListener(new OnFailureListener() {
-                         @Override
-                         public void onFailure(@NonNull Exception e) {
-                              Toast.makeText(Profile.this,e.getMessage(),Toast.LENGTH_SHORT).show();
-                         }
-                    });
-
-
-               }
-          });
-
-
-
-
-
-
-
      }
-
-
-
-
-
-
-
-
-
-
 
      private void link_camera()
      {
@@ -165,17 +110,28 @@ public class Profile extends AppCompatActivity {
      }
      });
      }
+     private void link_update()
+     {
+          final Intent intent = new Intent(this, profile_updateEdit.class);
+
+          update.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                    Profile.this.startActivity(intent);
+
+               }
+          });
+     }
 
      private void link_profile() {
-     final Intent intent = new Intent(this, Profile.class);
+          final Intent intent = new Intent(this, Profile.class);
 
-     profile.setOnClickListener(new View.OnClickListener() {
-     @Override
-     public void onClick(View view) {
-     Profile.this.startActivity(intent);
+          profile.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) { Profile.this.startActivity(intent);
 
-     }
-     });
+          }
+          });
      }
      private void link_setting()
      {
@@ -201,13 +157,28 @@ public class Profile extends AppCompatActivity {
      }
      });
      }
+     private void link_exit()
+     {
+          final Intent intent = new Intent(this, HomeActivity.class);
+
+          exit.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                    Profile.this.startActivity(intent);
+
+               }
+          });
+     }
 
      private void setScene()
      {
+          update = findViewById(R.id.button);
+     exit = findViewById(R.id.LOGOUTT);
      camera = findViewById(R.id.done);
      profile = findViewById(R.id.dd);
      settings = findViewById(R.id.ee);
      receipt = findViewById(R.id.aa);
+
      }
 
 

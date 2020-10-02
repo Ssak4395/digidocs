@@ -14,18 +14,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".emailVerification"
+            android:name=".activities.SignUpConfirmation"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_email_verification"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".activities.Sign_Up_Activity"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".activities.HELP_PAGE"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".activities.LEGAL_UPDATE"
             android:label="@string/app_name" />
         <activity
             android:name="com.example.digitaldocs.activities.ForgotPassword"
             android:label="@string/app_name" />
         <activity
             android:name=".activities.Camera"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".activities.profile_updateEdit"
             android:label="@string/app_name" />
         <activity
             android:name=".activities.Profile"

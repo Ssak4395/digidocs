@@ -41,7 +41,7 @@ public class dashboard extends AppCompatActivity {
     {
         camera = findViewById(R.id.camera_widget);
         profile = findViewById(R.id.profile_widget);
-        settings = findViewById(R.id.setting_widget);
+        settings = findViewById(R.id.setting_one);
         receipt = findViewById(R.id.receipt_widget);
     }
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/FrameLayout"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,24 +37,14 @@
         <ImageView
             android:id="@+id/imageView16"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/textView6"
+            android:layout_height="66dp"
+            app:layout_constraintBottom_toBottomOf="@+id/camera_widget"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/screen_shot_2020_09_18_at_11_03_32_pm" />
-
-        <ImageView
-            android:id="@+id/imageView17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/screen_shot_2020_09_18_at_11_10_49_pm" />
 
         <TextView
             android:id="@+id/textView16"
@@ -84,15 +74,6 @@
             app:layout_constraintVertical_bias="0.679"
             app:srcCompat="@drawable/ic_baseline_camera_roll_24" />
 
-        <TextView
-            android:id="@+id/textView20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Camera"
-            android:textColor="#040303"
-            app:layout_constraintBottom_toTopOf="@+id/imageView17"
-            app:layout_constraintEnd_toStartOf="@+id/imageView17" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
@@ -100,73 +81,74 @@
             android:orientation="vertical"
             app:layout_constraintGuide_begin="20dp" />
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="85dp"
-            android:layout_height="26dp"
-            android:text="Settings"
-            android:textColor="#090909"
-            app:layout_constraintBottom_toTopOf="@+id/imageView17"
-            app:layout_constraintEnd_toStartOf="@+id/imageView17" />
-
         <ImageButton
             android:id="@+id/receipt_widget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:tint="#878383"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.093"
+            app:layout_constraintHorizontal_bias="0.126"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.978"
+            app:layout_constraintVertical_bias="0.97"
             app:srcCompat="@drawable/ic_baseline_assignment_24" />
 
         <ImageButton
             android:id="@+id/search_widget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:tint="#878383"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.283"
+            app:layout_constraintHorizontal_bias="0.302"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.978"
+            app:layout_constraintVertical_bias="0.97"
             app:srcCompat="@drawable/ic_baseline_pageview_24" />
 
         <ImageButton
             android:id="@+id/camera_widget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:tint="#878383"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.978"
+            app:layout_constraintVertical_bias="0.97"
             app:srcCompat="@drawable/ic_baseline_camera_alt_24" />
 
         <ImageButton
             android:id="@+id/profile_widget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:tint="#878383"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.716"
+            app:layout_constraintHorizontal_bias="0.686"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.978"
+            app:layout_constraintVertical_bias="0.97"
             app:srcCompat="@drawable/ic_baseline_account_box_24" />
 
         <ImageButton
-            android:id="@+id/setting_widget"
+            android:id="@+id/setting_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:tint="#878383"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.914"
+            app:layout_constraintHorizontal_bias="0.86"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.978"
+            app:layout_constraintVertical_bias="0.97"
             app:srcCompat="@drawable/ic_baseline_settings_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
