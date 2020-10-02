@@ -7,7 +7,7 @@
     android:background="#FFFFFF">
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/accessGallery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ACCESS GALLERY"
@@ -100,15 +100,6 @@
         app:layout_constraintVertical_bias="0.801"
         app:srcCompat="@drawable/ic_baseline_pageview_24" />
 
-    <ImageView
-        android:id="@+id/imageView43"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:tint="#FFFFFF"
-        app:srcCompat="@drawable/ic_baseline_account_box_24"
-        tools:layout_editor_absoluteX="342dp"
-        tools:layout_editor_absoluteY="720dp" />
-
     <ImageButton
         android:id="@+id/camera_widget2"
         android:layout_width="31dp"
@@ -134,7 +125,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.97"
-        app:srcCompat="@drawable/ic_baseline_account_box_24" />
+        app:srcCompat="@drawable/ic_baseline_pageview_24" />
 
     <ImageButton
         android:id="@+id/setting_widget2"

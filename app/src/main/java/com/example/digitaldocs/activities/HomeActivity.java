@@ -53,7 +53,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        this.setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_home);
         setContentView(R.layout.activity_home);
         mControlsView = findViewById(R.id.container);
         signin = findViewById(R.id.SignIn);

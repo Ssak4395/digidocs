@@ -3,8 +3,16 @@
     package="com.example.digitaldocs">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-feature android:name="android.hardware.Camera"
+        android:required="true"/>
+
+
+
+
+
 
     <application
         android:allowBackup="true"
@@ -13,6 +21,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+    <meta-data
+        android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+        android:value="ocr" />
+
+
+
+
+
+
+        <activity
+            android:name=".activities.onImageTaken"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_on_image_taken"
+            android:theme="@style/FullscreenTheme">
+        </activity>
+    
         <activity
             android:name=".activities.SignUpConfirmation"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -28,7 +53,7 @@
             android:name=".activities.LEGAL_UPDATE"
             android:label="@string/app_name" />
         <activity
-            android:name="com.example.digitaldocs.activities.ForgotPassword"
+            android:name=".activities.ForgotPassword"
             android:label="@string/app_name" />
         <activity
             android:name=".activities.Camera"
@@ -61,6 +86,10 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+
+
+
     </application>
 
 </manifest>

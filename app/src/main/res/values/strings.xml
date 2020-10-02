@@ -6,4 +6,6 @@
     <string name="title_activity_email_verification">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_image_captured">FullscreenActivity</string>
+    <string name="title_activity_on_image_taken">FullscreenActivity</string>
 </resources>
