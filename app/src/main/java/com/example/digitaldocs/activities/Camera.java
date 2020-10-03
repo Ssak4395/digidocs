@@ -6,15 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Point;
-import android.graphics.Rect;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
-import android.util.SparseArray;
+import android.util.Base64;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,24 +24,30 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.digitaldocs.R;
-import com.example.digitaldocs.utilities.AbnSearchWSHttpGet;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.vision.Frame;
-import com.google.android.gms.vision.text.TextBlock;
-import com.google.android.gms.vision.text.TextRecognizer;
-import com.google.firebase.ml.vision.FirebaseVision;
-import com.google.firebase.ml.vision.common.FirebaseVisionImage;
-import com.google.firebase.ml.vision.text.FirebaseVisionText;
-import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
+import com.example.digitaldocs.services.AbnSearchWSHttpGet;
+import com.example.digitaldocs.services.algorithm.algorithms;
+import com.google.api.client.extensions.android.json.AndroidJsonFactory;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.services.vision.v1.Vision;
+import com.google.api.services.vision.v1.VisionRequestInitializer;
+import com.google.api.services.vision.v1.model.AnnotateImageRequest;
+import com.google.api.services.vision.v1.model.AnnotateImageResponse;
+import com.google.api.services.vision.v1.model.BatchAnnotateImagesRequest;
+import com.google.api.services.vision.v1.model.BatchAnnotateImagesResponse;
+import com.google.api.services.vision.v1.model.EntityAnnotation;
+import com.google.api.services.vision.v1.model.Feature;
+import com.google.api.services.vision.v1.model.Image;
+import com.google.api.services.vision.v1.model.TextAnnotation;
+
 
 import org.xml.sax.SAXException;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.math.BigDecimal;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -54,15 +59,20 @@ public class Camera extends AppCompatActivity {
     private ImageButton settings;
     private ImageButton receipt;
     private TextView accessGallery;
-    private ImageView test12345;
+    private String ABN;
+    private String totalDouble;
+    private String companyName;
+    private LoadingDialog loadingDialog;
+    byte[] byteArray;
     Context context = this;
     private static final int PICK_IMAGE = 1;
     private static final int PERMISSION_CODE = 1000;
     private static final int IMAGE_CAPTURE_CODE = 1001;
     ImageView mCaptureBtn;
-
+    String encodedBase64 ="";
     Uri image_uri;
     Bitmap image;
+    final static String guid =  "411e2117-1fe8-4876-a8a8-5e3150e22eda";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +87,7 @@ public class Camera extends AppCompatActivity {
         mCaptureBtn = findViewById(R.id.capture_image_btn);
 accessGallery = findViewById(R.id.accessGallery);
 
+loadingDialog = new LoadingDialog(this);
         accessGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,7 +156,11 @@ accessGallery = findViewById(R.id.accessGallery);
             image_uri = data.getData();
             try{
                 image = MediaStore.Images.Media.getBitmap(getContentResolver(),image_uri);
-                detectTextFromFirebase();
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                image.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                byteArray = byteArrayOutputStream .toByteArray();
+                encodedBase64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
+               new tryCloudVisionAPI().execute(byteArray);
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -239,20 +254,33 @@ accessGallery = findViewById(R.id.accessGallery);
 
 
 
+    /*
+    You can delete this but you never know when we might needed,
+    basically this uses mobile vision which
+    is essentially cloud vision for mobiles
+
+     */
     public void detectTextFromFirebase()
     {
-       FirebaseVisionImage firebaseVisionImage = FirebaseVisionImage.fromBitmap(image);
+       /*FirebaseVisionImage firebaseVisionImage = FirebaseVisionImage.fromBitmap(image);
         FirebaseVisionTextRecognizer firebaseVisionTextRecognizer = FirebaseVision.getInstance().getCloudTextRecognizer();
         firebaseVisionTextRecognizer.processImage(firebaseVisionImage).addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
             @Override
             public void onSuccess(FirebaseVisionText firebaseVisionText) {
-               String TotalPrice = displayTextFromImage(firebaseVisionText);
-               getABNFromImage(firebaseVisionText);
-               Intent intent =  new Intent(context,onImageTaken.class);
-               intent.putExtra("total",TotalPrice);
-               startActivity(intent);
+               //String TotalPrice = displayTextFromImage(firebaseVisionText);
+              // getABNFromImage(firebaseVisionText);
+              // Intent intent =  new Intent(context,onImageTaken.class);
+             //  intent.putExtra("total",TotalPrice);
+            //   startActivity(intent);
 
-              /*  try {
+
+                try {
+                    tryCloudVisionAPI();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+              *//*  try {
                     //String s = AbnSearchWSHttpGet.searchByABN("411e2117-1fe8-4876-a8a8-5e3150e22eda",getABNFromImage(firebaseVisionText),false).getOrganisationName();
                     System.out.println(s);
                 } catch (URISyntaxException e) {
@@ -272,74 +300,192 @@ accessGallery = findViewById(R.id.accessGallery);
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
-*/
+*//*
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 e.printStackTrace();
             }
-        });
+        });*/
     }
 
 
 
-    public String displayTextFromImage(FirebaseVisionText texts)
-    {
-        String text = "";
-        double isConvertableValue = 0.0;
+//    public String displayTextFromImage(FirebaseVisionText texts)
+//    {
+//        String text = "";
+//        double isConvertableValue = 0.0;
+//
+//
+//        List<FirebaseVisionText.TextBlock> blockList = texts.getTextBlocks();
+//        List<FirebaseVisionText.Line> lines;
+//        List<FirebaseVisionText.Element> words;
+//
+//        if(blockList.size() == 0)
+//        {
+//            Toast.makeText(this,"No Text found dorry",Toast.LENGTH_LONG);
+//
+//        }
+//        else
+//        {
+//            List<FirebaseVisionText.TextBlock> blocks = texts.getTextBlocks();
+//            for(int i = 0; i<blocks.size(); ++i)
+//            {
+//               if(blocks.get(i).getText().trim().equalsIgnoreCase("Total"))
+//               {
+//                   for(int j = i+1; j<blocks.size(); ++j)
+//                   {
+//                       try{
+//                           text = blocks.get(j).getText();
+//                           isConvertableValue = Double.parseDouble(text.replace("$","").trim());
+//                          return Double.toString(isConvertableValue);
+//                       }catch (NumberFormatException e)
+//                       {
+//                           continue;
+//                       }
+//                   }
+//               }
+//            }
+//
+//
+//        }
+//        return  Double.toString(isConvertableValue);
+//    }
+
+//    public String getABNFromImage(FirebaseVisionText texts){
+//        List<FirebaseVisionText.TextBlock> blockList = texts.getTextBlocks();
+//        List<FirebaseVisionText.Line> lines;
+//        List<FirebaseVisionText.Element> words;
+//
+//        for(int i = 0; i<blockList.size(); ++i){
+//            if(blockList.get(i).getText().contains("ABN"))
+//            {
+//                words = blockList.get(i).getLines().get(i).getElements();
+//                for(int j = 0; j<words.size(); ++j)
+//                {
+//                    System.out.println(words.get(j).getText());
+//                }
+//            }
+//        }
+//        return "88000014675";
+//    }
 
 
-        List<FirebaseVisionText.TextBlock> blockList = texts.getTextBlocks();
-        List<FirebaseVisionText.Line> lines;
-        List<FirebaseVisionText.Element> words;
 
-        if(blockList.size() == 0)
-        {
-            Toast.makeText(this,"No Text found dorry",Toast.LENGTH_LONG);
 
-        }
-        else
-        {
-            List<FirebaseVisionText.TextBlock> blocks = texts.getTextBlocks();
-            for(int i = 0; i<blocks.size(); ++i)
-            {
-               if(blocks.get(i).getText().trim().equalsIgnoreCase("Total"))
-               {
-                   for(int j = i+1; j<blocks.size(); ++j)
-                   {
-                       try{
-                           text = blocks.get(j).getText();
-                           isConvertableValue = Double.parseDouble(text.replace("$","").trim());
-                          return Double.toString(isConvertableValue);
-                       }catch (NumberFormatException e)
-                       {
-                           continue;
-                       }
-                   }
-               }
+
+    public class tryCloudVisionAPI extends AsyncTask<byte[],String,String>{
+
+
+        @Override
+        protected String doInBackground(byte[]... bytes) {
+            Vision.Builder visionBuilder = new Vision.Builder(
+                    new NetHttpTransport(),
+                    new AndroidJsonFactory(),
+                    null);
+
+            visionBuilder.setVisionRequestInitializer(
+                    new VisionRequestInitializer("AIzaSyD2p2Yc95RZ01oFNI9ox9yE2BhXR5X3rTw"));
+
+            Vision vision = visionBuilder.build();
+
+            Image image = new Image();
+            image.encodeContent(bytes[0]);
+            Feature desiredFeature = new Feature();
+            desiredFeature.setType("TEXT_DETECTION");
+
+            List<EntityAnnotation> results = new ArrayList<>();
+            AnnotateImageRequest request = new AnnotateImageRequest();
+            request.setImage(image);
+            request.setFeatures(Arrays.asList(desiredFeature));
+
+            BatchAnnotateImagesRequest batchRequest =
+                    new BatchAnnotateImagesRequest();
+
+            batchRequest.setRequests(Arrays.asList(request));
+
+
+            BatchAnnotateImagesResponse batchResponse =
+                    null;
+            try {
+                batchResponse = vision.images().annotate(batchRequest).execute();
+
+                for(AnnotateImageResponse res : batchResponse.getResponses())
+                {
+
+                    results = res.getTextAnnotations();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            algorithms algorithms = new algorithms();
+
+            try {
+                totalDouble = Double.toString(algorithms.startTotalStrategy(results));
+                ABN = algorithms.startABNStrategy(results);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
 
-        }
-        return  Double.toString(isConvertableValue);
-    }
-
-    public String getABNFromImage(FirebaseVisionText texts){
-        List<FirebaseVisionText.TextBlock> blockList = texts.getTextBlocks();
-        List<FirebaseVisionText.Line> lines;
-        List<FirebaseVisionText.Element> words;
-
-        for(int i = 0; i<blockList.size(); ++i){
-            if(blockList.get(i).getText().contains("ABN"))
+            if(!ABN.equals("Algorithm could not detect a valid ABN"))
             {
-                words = blockList.get(i).getLines().get(i).getElements();
-                for(int j = 0; j<words.size(); ++j)
-                {
-                    System.out.println(words.get(j).getText());
+                try {
+                    companyName = AbnSearchWSHttpGet.searchByABN(guid,ABN,false).getOrganisationName();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (SAXException e) {
+                    e.printStackTrace();
+                } catch (ParserConfigurationException e) {
+                    e.printStackTrace();
                 }
             }
+
+
+            return totalDouble;
         }
-        return "88000014675";
+
+        @Override
+        protected void onPostExecute(String s)
+        {
+            super.onPostExecute(s);
+            final Intent intent = new Intent(context,onImageTaken.class);
+            System.out.println("The total price " + "$"+ totalDouble);
+            System.out.println("The ABN Number of this business is: " + ABN);
+            intent.putExtra("total",totalDouble);
+            intent.putExtra("abn",ABN);
+            intent.putExtra("company",companyName);
+
+            loadingDialog.startLoadingAnimationg();
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    loadingDialog.dismissDialog();
+                    startActivity(intent);
+
+                }
+            },4000);
+
+
+
+
+        }
     }
+
+
+
 }

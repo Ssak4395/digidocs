@@ -21,32 +21,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/sign_up_button2"
-            android:layout_width="187dp"
-            android:layout_height="76dp"
-            android:background="@drawable/rounded_corner"
-            android:text="Scan Image"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:translationX="120dp"
-            android:translationY="320dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.367" />
-
         <TextView
-            android:id="@+id/compName"
+            android:id="@+id/abn"
             android:layout_width="374dp"
             android:layout_height="69dp"
-            android:layout_marginTop="344dp"
-            android:layout_marginEnd="28dp"
-            android:layout_marginRight="28dp"
+            android:layout_marginTop="320dp"
+            android:layout_marginEnd="32dp"
+            android:text="ABN:"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/companyName"
+            android:layout_width="374dp"
+            android:layout_height="69dp"
+            android:layout_marginTop="412dp"
+            android:layout_marginEnd="32dp"
             android:text="Company Name:"
             android:textColor="#000000"
             android:textSize="18sp"
