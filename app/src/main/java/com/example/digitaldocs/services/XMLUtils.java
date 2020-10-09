@@ -14,25 +14,20 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 // Deal with the differences in the XML classes between Java 1.4 and Java 1.5 (and 1.6)
-public class XMLUtils
-{
-    public static Document DOMParseXML(InputStream is) throws SAXException, IOException, ParserConfigurationException, FactoryConfigurationError
-    {
+public class XMLUtils {
+    public static Document DOMParseXML(InputStream is) throws SAXException, IOException,
+            ParserConfigurationException, FactoryConfigurationError {
         return DOMParseXML(is, false);
     }
 
-    public static Document DOMParseXML(InputStream is, boolean namespaceAware) throws SAXException, IOException, ParserConfigurationException,
-            FactoryConfigurationError
-    {
+    public static Document DOMParseXML(InputStream is, boolean namespaceAware) throws SAXException,
+            IOException, ParserConfigurationException, FactoryConfigurationError {
         Document doc = null;
-
         doc = getDocumentBuilder(namespaceAware).parse(is);
-
         return doc;
     }
 
-    private static DocumentBuilder getDocumentBuilder(boolean namespaceAware) throws ParserConfigurationException
-    {
+    private static DocumentBuilder getDocumentBuilder(boolean namespaceAware) throws ParserConfigurationException {
         DocumentBuilder d = null;
 
         DocumentBuilderFactory f;
@@ -45,8 +40,7 @@ public class XMLUtils
         return d;
     }
 
-    public static String getNodeText(Node root, String path)
-    {
+    public static String getNodeText(Node root, String path) {
         String s = "";
 
         Node n = getNode(root, path);
@@ -57,43 +51,39 @@ public class XMLUtils
         return s;
     }
 
-    public static String getTextContent(Node node)
-    {
+    public static String getTextContent(Node node) {
         String s = null;
 
-        if (node.getNodeType() == Node.TEXT_NODE)
+        if (node.getNodeType() == Node.TEXT_NODE) {
             s += node.getNodeValue();
-
+        }
         NodeList list = node.getChildNodes();
 
-        for (int i = 0; i < list.getLength(); i++)
-        {
+        for (int i = 0; i < list.getLength(); i++) {
             Node n = list.item(i);
 
-            if (n.getNodeType() == Node.TEXT_NODE)
-            {
-                if (s == null || s.length() == 0)
+            if (n.getNodeType() == Node.TEXT_NODE) {
+                if (s == null || s.length() == 0) {
                     s = n.getNodeValue();
-                else
+                } else {
                     s += " " + n.getNodeValue();
+                }
             }
         }
 
         return s;
     }
 
-    public static Node getNode(Node root, String path)
-    {
-        if (path.startsWith("/"))
+    public static Node getNode(Node root, String path) {
+        if (path.startsWith("/")) {
             path = path.substring(1);
-
+        }
         String[] nodeNames = path.split("/");
 
         Node start = root;
         Node node = null;
 
-        for (int i = 0; i < nodeNames.length; i++)
-        {
+        for (int i = 0; i < nodeNames.length; i++) {
             node = findNode(start, nodeNames[i]);
 
             if (node == null)
@@ -105,15 +95,13 @@ public class XMLUtils
         return node;
     }
 
-    private static Node findNode(Node root, String name)
-    {
-        if (name.equals(root.getNodeName()))
+    private static Node findNode(Node root, String name) {
+        if (name.equals(root.getNodeName())) {
             return root;
-
+        }
         NodeList list = root.getChildNodes();
 
-        for (int i = 0; i < list.getLength(); i++)
-        {
+        for (int i = 0; i < list.getLength(); i++) {
             Node n = list.item(i);
 
             if (name.equals(n.getNodeName()))
@@ -122,4 +110,5 @@ public class XMLUtils
 
         return null;
     }
+
 }

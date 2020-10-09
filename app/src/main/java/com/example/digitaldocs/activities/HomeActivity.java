@@ -27,26 +27,17 @@ import com.google.firebase.auth.FirebaseAuth;
  * status bar and navigation/system bar) with user interaction.
  */
 public class HomeActivity extends AppCompatActivity {
-
-
     private static final boolean AUTO_HIDE = true;
     public static Context context;
     private EditText textInputEmail;
     private EditText textInputPassword;
-    private TextView sign_up_prompt;
-    Button sign_in_prompt;
-    Button signin;
+    private TextView signUpPrompt;
+    Button signInPrompt;
+    Button signIn;
     FirebaseAuth firebaseAuth;
-    private TextView forgotPassword; 
-
-
-
-
+    private TextView forgotPassword;
     private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
-
-
     private View mControlsView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,28 +47,20 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         setContentView(R.layout.activity_home);
         mControlsView = findViewById(R.id.container);
-        signin = findViewById(R.id.SignIn);
+        signIn = findViewById(R.id.SignIn);
         firebaseAuth = FirebaseAuth.getInstance();
 
-      setScene();
-      explodeSignUpScene();
-      explodeForgotPassword();
+        setScene();
+        explodeSignUpScene();
+        explodeForgotPassword();
 
-      signin.setOnClickListener(new View.OnClickListener() {
+        signIn.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
               System.out.println("Button clicked.");
               handleSignIn(textInputEmail.getText().toString(),textInputPassword.getText().toString());
           }
-      });
-
-
-
-
-
-
-
-
+        });
     }
 
     private boolean validateEmail() {
@@ -116,64 +99,54 @@ public class HomeActivity extends AppCompatActivity {
         Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
     }
 
-    private void setScene()
-    {
+    private void setScene() {
       textInputEmail = findViewById(R.id.email);
       textInputPassword = findViewById(R.id.password);
-      sign_up_prompt = findViewById(R.id.sign_up);
-      sign_in_prompt= findViewById(R.id.SignIn);
+      signUpPrompt = findViewById(R.id.sign_up);
+      signInPrompt= findViewById(R.id.SignIn);
       forgotPassword= findViewById(R.id.forget_widget); //link the sign up page to the forget pw
     }
-    private void explodeDashBoardScene()
-    {
+
+    private void explodeDashBoardScene() {
 
     }
     
-    private void explodeForgotPassword()
-    {
+    private void explodeForgotPassword() {
         final Intent intent = new Intent(this, ForgotPassword.class);
 
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { //linking needed
                 HomeActivity.this.startActivity(intent);
-
             }
         });
     }
     
 
-    private void explodeSignUpScene()
-    {
+    private void explodeSignUpScene() {
         final Intent intent = new Intent(this, Sign_Up_Activity.class);
 
-        sign_up_prompt.setOnClickListener(new View.OnClickListener() {
+        signUpPrompt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 HomeActivity.this.startActivity(intent);
-
             }
         });
     }
 
-    public void handleSignIn(String email, String password)
-    {
-
+    public void handleSignIn(String email, String password) {
         final Intent intent = new Intent(this,dashboard.class);
+
         firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful())
-                {
-                    if(firebaseAuth.getCurrentUser().isEmailVerified())
-                    {
+                if(task.isSuccessful()) {
+                    if(firebaseAuth.getCurrentUser().isEmailVerified()) {
                         HomeActivity.this.startActivity(intent);
-                    }else
-                    {
+                    } else {
                         new AlertDialog.Builder(context)
                                 .setTitle("Error")
                                 .setMessage("Please Verify Your Email Address ")
-
                                 // Specifying a listener allows you to take an action before dismissing the dialog.
                                 // The dialog is automatically dismissed when a dialog button is clicked.
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -183,15 +156,7 @@ public class HomeActivity extends AppCompatActivity {
                                 }).show();
                     }
                 }
-
-
-
-
-
-
             }
         });
     }
-
-
 }

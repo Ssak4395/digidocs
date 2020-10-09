@@ -17,14 +17,11 @@ public class alertDialogs {
         this.activity = activity;
     }
 
-    public void explodeDialog()
-    {
-
-
+    public void explodeDialog() {
         //Declare a builder to start the dialog activity creation
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
-        //Declare inflator object, to explode layout on screen
+        //Declare inflater object, to explode layout on screen
         LayoutInflater layoutInflater = activity.getLayoutInflater();
         builder.setView(layoutInflater.inflate(R.layout.custom_alert_dialog,null));
         builder.setCancelable(true);

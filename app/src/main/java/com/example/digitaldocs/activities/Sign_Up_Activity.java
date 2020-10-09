@@ -1,15 +1,11 @@
 package com.example.digitaldocs.activities;
 
-import android.annotation.SuppressLint;
-
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,27 +17,16 @@ import com.example.digitaldocs.utilities.alertDialogs;
 import com.example.digitaldocs.utilities.emailValidator;
 import com.example.digitaldocs.utilities.passwordValidator;
 
-import java.util.regex.Pattern;
-import com.example.digitaldocs.utilities.SignUpHandler;
-
-
 public class Sign_Up_Activity extends AppCompatActivity {
-
-
-
-    //SignUpHandler signUpHandler;
     EditText editEmail;
     EditText editPassword;
     EditText editFirstName;
     EditText editLastName;
-    Button sign_up;
+    Button signUp;
     LoadingDialog loadingDialog;
     alertDialogs alertDialogs;
     SignUpHandler signUpHandler;
     passwordValidator passwordValidator;
-    emailValidator emailValidator;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +39,12 @@ public class Sign_Up_Activity extends AppCompatActivity {
         passwordValidator = new passwordValidator();
         editEmail = findViewById(R.id.editEmail);
         editPassword = findViewById(R.id.editPassInput);
-        sign_up = findViewById(R.id.sign_up_button);
+        signUp = findViewById(R.id.sign_up_button);
         editFirstName = findViewById(R.id.editFirstName);
         editLastName = findViewById(R.id.editLastName);
 
         signUpHandler = new SignUpHandler();
-        sign_up.setOnClickListener(new View.OnClickListener() {
+        signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                     boolean validEmail;
@@ -88,10 +73,10 @@ public class Sign_Up_Activity extends AppCompatActivity {
                         toast.show();
                     }
                     if (validEmail && validPassword) { // if both are valid we do our normal sign-up routine
-                        signUpHandler.signup(editEmail.getText().toString(),editPassword.getText().toString(),
+                        signUpHandler.signUp(editEmail.getText().toString(),editPassword.getText().toString(),
                                 editFirstName.getText().toString(),editLastName.getText().toString()
                         );
-                        loadingDialog.startLoadingAnimationg();
+                        loadingDialog.startLoadingAnimation();
                         //Create new thread to dismiss the loading dialog
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
@@ -105,17 +90,11 @@ public class Sign_Up_Activity extends AppCompatActivity {
                     }
             }
         });
-
     }
 
-
-public void reloadDashboard()
-{
-    final Intent intent = new Intent(this,SignUpConfirmation.class);
-    this.startActivity(intent);
-}
-
-
-
+    public void reloadDashboard() {
+        final Intent intent = new Intent(this,SignUpConfirmation.class);
+        this.startActivity(intent);
+    }
 
 }

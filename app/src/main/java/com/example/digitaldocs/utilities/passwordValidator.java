@@ -18,7 +18,6 @@ public class passwordValidator {
     }
 
     public boolean validate(final String password) {
-
         System.out.println(password);
         matcher = pattern.matcher(password);
         return matcher.find();

@@ -37,8 +37,6 @@ import com.google.api.services.vision.v1.model.BatchAnnotateImagesResponse;
 import com.google.api.services.vision.v1.model.EntityAnnotation;
 import com.google.api.services.vision.v1.model.Feature;
 import com.google.api.services.vision.v1.model.Image;
-import com.google.api.services.vision.v1.model.TextAnnotation;
-
 
 import org.xml.sax.SAXException;
 
@@ -50,7 +48,6 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import javax.xml.parsers.ParserConfigurationException;
 
 public class Camera extends AppCompatActivity {
@@ -79,15 +76,15 @@ public class Camera extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camera_display);
         setScene();
-        link_camera();
-        link_profile();
-        link_receipt();
-        link_setting();
+        linkCamera();
+        linkProfile();
+        linkReceipt();
+        linkSetting();
 
+        accessGallery = findViewById(R.id.accessGallery);
         mCaptureBtn = findViewById(R.id.capture_image_btn);
-accessGallery = findViewById(R.id.accessGallery);
+        loadingDialog = new LoadingDialog(this);
 
-loadingDialog = new LoadingDialog(this);
         accessGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -169,60 +166,54 @@ loadingDialog = new LoadingDialog(this);
             }
         }
     }
-    private void setScene()
-    {
+
+    private void setScene() {
         camera = findViewById(R.id.camera_widget2);
         profile = findViewById(R.id.profile_widget2);
         settings = findViewById(R.id.setting_widget2);
         receipt = findViewById(R.id.receipt_widget2);
     }
 
-    private void link_camera()
-    {
+    private void linkCamera() {
         final Intent intent = new Intent(this, Camera.class);
 
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Camera.this.startActivity(intent);
-
             }
         });
     }
 
-    private void link_profile()
-    {
+    private void linkProfile() {
         final Intent intent = new Intent(this, Profile.class);
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Camera.this.startActivity(intent);
-
             }
         });
     }
-    private void link_setting()
-    {
+
+    private void linkSetting() {
         final Intent intent = new Intent(this, Settings.class);
 
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Camera.this.startActivity(intent);
-
             }
         });
     }
-    private void link_receipt()
-    {
+
+    private void linkReceipt() {
         final Intent intent = new Intent(this, Receipt.class);
 
         receipt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Camera.this.startActivity(intent);
-
             }
         });
     }
@@ -251,9 +242,6 @@ loadingDialog = new LoadingDialog(this);
 //
 //        }
 
-
-
-
     /*
     You can delete this but you never know when we might needed,
     basically this uses mobile vision which
@@ -272,7 +260,6 @@ loadingDialog = new LoadingDialog(this);
               // Intent intent =  new Intent(context,onImageTaken.class);
              //  intent.putExtra("total",TotalPrice);
             //   startActivity(intent);
-
 
                 try {
                     tryCloudVisionAPI();
@@ -371,13 +358,7 @@ loadingDialog = new LoadingDialog(this);
 //        return "88000014675";
 //    }
 
-
-
-
-
     public class tryCloudVisionAPI extends AsyncTask<byte[],String,String>{
-
-
         @Override
         protected String doInBackground(byte[]... bytes) {
             Vision.Builder visionBuilder = new Vision.Builder(
@@ -399,15 +380,9 @@ loadingDialog = new LoadingDialog(this);
             AnnotateImageRequest request = new AnnotateImageRequest();
             request.setImage(image);
             request.setFeatures(Arrays.asList(desiredFeature));
-
-            BatchAnnotateImagesRequest batchRequest =
-                    new BatchAnnotateImagesRequest();
-
+            BatchAnnotateImagesRequest batchRequest = new BatchAnnotateImagesRequest();
             batchRequest.setRequests(Arrays.asList(request));
-
-
-            BatchAnnotateImagesResponse batchResponse =
-                    null;
+            BatchAnnotateImagesResponse batchResponse = null;
             try {
                 batchResponse = vision.images().annotate(batchRequest).execute();
 
@@ -429,9 +404,7 @@ loadingDialog = new LoadingDialog(this);
                 e.printStackTrace();
             }
 
-
-            if(!ABN.equals("Algorithm could not detect a valid ABN"))
-            {
+            if (!ABN.equals("Algorithm could not detect a valid ABN")) {
                 try {
                     companyName = AbnSearchWSHttpGet.searchByABN(guid,ABN,false).getOrganisationName();
                 } catch (ClassNotFoundException e) {
@@ -452,14 +425,11 @@ loadingDialog = new LoadingDialog(this);
                     e.printStackTrace();
                 }
             }
-
-
             return totalDouble;
         }
 
         @Override
-        protected void onPostExecute(String s)
-        {
+        protected void onPostExecute(String s) {
             super.onPostExecute(s);
             final Intent intent = new Intent(context,onImageTaken.class);
             System.out.println("The total price " + "$"+ totalDouble);
@@ -468,7 +438,7 @@ loadingDialog = new LoadingDialog(this);
             intent.putExtra("abn",ABN);
             intent.putExtra("company",companyName);
 
-            loadingDialog.startLoadingAnimationg();
+            loadingDialog.startLoadingAnimation();
 
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -476,13 +446,8 @@ loadingDialog = new LoadingDialog(this);
                 public void run() {
                     loadingDialog.dismissDialog();
                     startActivity(intent);
-
                 }
             },4000);
-
-
-
-
         }
     }
 

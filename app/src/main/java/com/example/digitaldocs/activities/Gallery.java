@@ -18,26 +18,21 @@ public class Gallery extends AppCompatActivity {
         this.setContentView(R.layout.gallery_display);
         setContentView(R.layout.gallery_display);
         setScene();
-        link_gallery();
-
-
+        linkGallery();
     }
 
     private void setScene() {
         gallery = findViewById(R.id.gallery_widget);
-
     }
 
 
-    private void link_gallery()
-    {
+    private void linkGallery() {
         final Intent intent = new Intent(this, Gallery.class);
 
         gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Gallery.this.startActivity(intent);
-
             }
         });
     }

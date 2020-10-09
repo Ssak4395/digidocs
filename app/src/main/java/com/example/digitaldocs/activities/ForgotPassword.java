@@ -19,7 +19,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 
 public class ForgotPassword extends AppCompatActivity {
-
     private EditText userEmailInput;
     private Button submit;
     private FirebaseAuth mAuth;
@@ -59,6 +58,5 @@ public class ForgotPassword extends AppCompatActivity {
             }
         });
     }
-
 }
 

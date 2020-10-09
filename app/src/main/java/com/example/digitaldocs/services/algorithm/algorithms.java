@@ -25,7 +25,6 @@ public class algorithms {
 
         Semantic searching can be further finetuned to find other elements from a reciept such as Store manager served, date, phone number etc.
 
-
          */
         List<EntityAnnotation> ents = entities;
 
@@ -53,21 +52,15 @@ public class algorithms {
                                 if (isConvertableValue == 0.0) {
                                     --delta;  //If we find nothing reduce the delta until we do.
                                 }
-
-
                             } catch (NumberFormatException e) {
                                 continue;
                             }
-
                         }
                     }
-
                 }
             }
         }
         return isConvertableValue;
-
-
     }
 
     public String startABNStrategy(List<EntityAnnotation> entities) throws IOException {
@@ -78,7 +71,6 @@ public class algorithms {
 
         String ABN = "";
 
-
         for (int i = 1; i < ents.size(); ++i)
             if (ents.get(i).getDescription().equalsIgnoreCase("ABN") | ents.get(i).getDescription().equalsIgnoreCase("ABN:")) {
                 v1 = ents.get(i).getBoundingPoly().getVertices().get(0);
@@ -87,25 +79,21 @@ public class algorithms {
 
                     if (v1.getY() <= v2.getY() + 30 && v1.getY() >= v2.getY() - 30) {
                         ABN += ents.get(j).getDescription();
-                        if(ABN.toCharArray().length ==11)
-                        {
-                            try{
+                        if(ABN.toCharArray().length ==11) {
+                            try {
                                 rawABN = Long.parseLong(ABN);
                                 return Long.toString(rawABN);
-                            }catch (NumberFormatException e)
-                            {
+                            } catch (NumberFormatException ignored) {
 
                             }
                         }
-
                     }
                 }
-
             }
-
-
-        if(!Long.toString(rawABN).matches( "[0-9]+")|Long.toString(rawABN).toCharArray().length != 11)
-        {
-            return "Algorithm could not detect a valid ABN"; }return Long.toString(rawABN); }
+        if (!Long.toString(rawABN).matches( "[0-9]+")|Long.toString(rawABN).toCharArray().length != 11) {
+            return "Algorithm could not detect a valid ABN";
+        }
+        return Long.toString(rawABN);
+    }
 
 }

@@ -7,22 +7,18 @@ import android.view.LayoutInflater;
 import com.example.digitaldocs.R;
 
 public class LoadingDialog {
-
-   private Activity activity;
+    private Activity activity;
     private AlertDialog alertDialog;
 
-
-    LoadingDialog (Activity activity){
-
+    LoadingDialog(Activity activity) {
         this.activity = activity;
     }
 
-    void startLoadingAnimationg()
-    {
+    void startLoadingAnimation() {
         //Declare a builder to start the dialog activity creation
-       AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
-       //Declare inflator object, to explode layout on screen
+        //Declare inflater object, to explode layout on screen
         LayoutInflater layoutInflater = activity.getLayoutInflater();
         builder.setView(layoutInflater.inflate(R.layout.custom_dialog,null));
         builder.setCancelable(false);
@@ -30,9 +26,7 @@ public class LoadingDialog {
         alertDialog.show();
     }
 
-    void dismissDialog()
-    {
+    void dismissDialog() {
         alertDialog.dismiss();
     }
-
 }

@@ -7,10 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.digitaldocs.R;
 
 public class HELP_PAGE extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         this.setContentView(R.layout.help_page);
         setContentView(R.layout.help_page);
     }

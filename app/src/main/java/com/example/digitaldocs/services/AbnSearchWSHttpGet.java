@@ -11,34 +11,29 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-public class AbnSearchWSHttpGet
-{
+public class AbnSearchWSHttpGet {
     private static final String	UTF_8	= "UTF-8";
 
-    public static void main(String[] args)
-    {
-        try
-        {
+    public static void main(String[] args) {
+        try {
             String guid = "411e2117-1fe8-4876-a8a8-5e3150e22eda";
             String abn = "36004763526";
 
             ABNSearchObject result = searchByABN(guid, abn, false);
 
-            if (!result.isException())
+            if (!result.isException()) {
                 System.out.println("ABN search for ABN [" + abn + "] returned business name [" + result.getOrganisationName() + "]");
-            else
+            } else {
                 System.out.println("ABN search for ABN [" + abn + "] returned exception [" + result.getExceptionDescription() + "]");
-        }
-        catch (Exception e)
-        {
+            }
+        } catch (Exception e) {
             System.err.println("Caught exception : " + e);
             e.printStackTrace(System.err);
         }
     }
 
     public static ABNSearchObject searchByABN(String guid, String abn, boolean includeHistorical) throws URISyntaxException, IOException,
-            SAXException, ParserConfigurationException, FactoryConfigurationError
-    {
+            SAXException, ParserConfigurationException, FactoryConfigurationError {
         ABNSearchObject results = null;
 
         String params = "";
@@ -52,8 +47,7 @@ public class AbnSearchWSHttpGet
     }
 
     public static ABNSearchObject searchByACN(String guid, String acn, boolean includeHistorical) throws URISyntaxException, IOException,
-            SAXException, ParserConfigurationException, FactoryConfigurationError
-    {
+            SAXException, ParserConfigurationException, FactoryConfigurationError {
         ABNSearchObject results = null;
 
         String params = "";
@@ -67,8 +61,7 @@ public class AbnSearchWSHttpGet
     }
 
     public static ABNSearchObject searchByABNv200506(String guid, String abn, boolean includeHistorical) throws URISyntaxException, IOException,
-            SAXException, ParserConfigurationException, FactoryConfigurationError
-    {
+            SAXException, ParserConfigurationException, FactoryConfigurationError {
         ABNSearchObject results = null;
 
         String params = "";
@@ -82,8 +75,7 @@ public class AbnSearchWSHttpGet
     }
 
     public static ABNSearchObject searchByACNv200506(String guid, String acn, boolean includeHistorical) throws URISyntaxException, IOException,
-            SAXException, ParserConfigurationException, FactoryConfigurationError
-    {
+            SAXException, ParserConfigurationException, FactoryConfigurationError {
         ABNSearchObject results = null;
 
         String params = "";
@@ -98,8 +90,7 @@ public class AbnSearchWSHttpGet
 
     public static ABNSearchObject searchByNameSimpleProtocol(String guid, String name, boolean legal, boolean trading, boolean act, boolean nsw,
                                                              boolean nt, boolean qld, boolean sa, boolean tas, boolean vic, boolean wa, String postcode) throws URISyntaxException, IOException,
-            SAXException, ParserConfigurationException, FactoryConfigurationError
-    {
+            SAXException, ParserConfigurationException, FactoryConfigurationError {
         ABNSearchObject results = null;
 
         String params = "";
@@ -127,8 +118,7 @@ public class AbnSearchWSHttpGet
 
     public static ABNSearchObject searchByNameAdvancedSimpleProtocol(String guid, String name, boolean legal, boolean trading, boolean act,
                                                                      boolean nsw, boolean nt, boolean qld, boolean sa, boolean tas, boolean vic, boolean wa, String postcode, String width, int minScore)
-            throws URISyntaxException, IOException, SAXException, ParserConfigurationException, FactoryConfigurationError
-    {
+            throws URISyntaxException, IOException, SAXException, ParserConfigurationException, FactoryConfigurationError {
         ABNSearchObject results = null;
 
         String params = "";
@@ -159,8 +149,7 @@ public class AbnSearchWSHttpGet
     }
 
     private static ABNSearchObject doRequest(String guid, String service, String parameters) throws URISyntaxException, IOException, SAXException,
-            ParserConfigurationException, FactoryConfigurationError
-    {
+            ParserConfigurationException, FactoryConfigurationError {
         ABNSearchObject result = null;
 
         URL url = new URL("https://abr.business.gov.au/abrxmlsearch/ABRXMLSearch.asmx/" + service + "?authenticationGuid=" + URLEncoder.encode(guid, UTF_8) + parameters);
@@ -179,8 +168,7 @@ public class AbnSearchWSHttpGet
         return result;
     }
 
-    private static String encodeBooleanParam(boolean value)
-    {
+    private static String encodeBooleanParam(boolean value) {
         if (value)
             return "Y";
         else

@@ -36,9 +36,6 @@ public class profile_updateEdit extends AppCompatActivity {
         this.setContentView(R.layout.update_profile);
         setContentView(R.layout.update_profile);
 
-
-
-
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
         userID = fAuth.getCurrentUser().getUid();
@@ -50,67 +47,50 @@ public class profile_updateEdit extends AppCompatActivity {
         update = findViewById(R.id.button2);
 
         user = fAuth.getCurrentUser();
+        DocumentReference documentReference = fStore.collection("users").document(userID);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                Email.setText(documentSnapshot.getString("Email"));
+                firstName.setText(documentSnapshot.getString("First Name"));
+                LastName.setText(documentSnapshot.getString("Last Name"));
+            }
+        });
 
-
-            DocumentReference documentReference = fStore.collection("users").document(userID);
-            documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-                @Override
-                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                    Email.setText(documentSnapshot.getString("Email"));
-                    firstName.setText(documentSnapshot.getString("First Name"));
-                    LastName.setText(documentSnapshot.getString("Last Name"));
-
-
+        update.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if (Email.getText().toString().isEmpty()|| LastName.getText().toString().isEmpty() || firstName.getText().toString().isEmpty()){
+                    Toast.makeText(profile_updateEdit.this,"You havent made any changes",Toast.LENGTH_SHORT).show();
+                    return;
                 }
-            });
 
-            update.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    if(Email.getText().toString().isEmpty()|| LastName.getText().toString().isEmpty() || firstName.getText().toString().isEmpty()){
-                        Toast.makeText(profile_updateEdit.this,"You havent made any changes",Toast.LENGTH_SHORT).show();
-                        return;
-
+                final String changeEmail= Email.getText().toString();
+                user.updateEmail(changeEmail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        DocumentReference docRef = fStore.collection("users").document(user.getUid());
+                        Map<String,Object> edited = new HashMap<>();
+                        edited.put("Email,",changeEmail);
+                        edited.put("First Name,",firstName.getText().toString());
+                        edited.put("Last Name,",LastName.getText().toString());
+                        docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(profile_updateEdit.this,"Profile Updated",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        Toast.makeText(profile_updateEdit.this,"EMAIL HAS BEEN CHANGED",Toast.LENGTH_SHORT).show();
                     }
-                    final String changeEmail= Email.getText().toString();
-                    user.updateEmail(changeEmail).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            DocumentReference docRef = fStore.collection("users").document(user.getUid());
-                            Map<String,Object> edited = new HashMap<>();
-                            edited.put("Email,",changeEmail);
-                            edited.put("First Name,",firstName.getText().toString());
-                            edited.put("Last Name,",LastName.getText().toString());
-                            docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(profile_updateEdit.this,"Profile Updated",Toast.LENGTH_SHORT).show();
-                                }
-                            });
-
-                            Toast.makeText(profile_updateEdit.this,"EMAIL HAS BEEN CHANGED",Toast.LENGTH_SHORT).show();
-
-
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(profile_updateEdit.this,e.getMessage(),Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-
-                }
-            });
-
-
-
-
-
-
-
-        }
-
-
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(profile_updateEdit.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
     }
+
+}
 
