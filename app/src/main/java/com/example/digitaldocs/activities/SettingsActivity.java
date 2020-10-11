@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.digitaldocs.R;
 
-public class Settings extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
     private ImageButton camera;
     private ImageButton profile;
     private ImageButton settings;
@@ -33,67 +33,67 @@ public class Settings extends AppCompatActivity {
     }
 
     private void linkCamera() {
-        final Intent intent = new Intent(this, Camera.class);
+        final Intent intent = new Intent(this, CameraActivity.class);
 
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              Settings.this.startActivity(intent);
+              SettingsActivity.this.startActivity(intent);
             }
         });
     }
 
     private void linkLegal() {
-        final Intent intent = new Intent(this, LEGAL_UPDATE.class);
+        final Intent intent = new Intent(this, LegalActivity.class);
 
         legal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Settings.this.startActivity(intent);
+                SettingsActivity.this.startActivity(intent);
             }
         });
     }
 
     private void linkHelp() {
-        final Intent intent = new Intent(this, HELP_PAGE.class);
+        final Intent intent = new Intent(this, HelpActivity.class);
 
         help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Settings.this.startActivity(intent);
+                SettingsActivity.this.startActivity(intent);
             }
         });
     }
 
     private void linkProfile() {
-        final Intent intent = new Intent(this, Profile.class);
+        final Intent intent = new Intent(this, ProfileActivity.class);
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Settings.this.startActivity(intent);
+               SettingsActivity.this.startActivity(intent);
             }
         });
     }
 
     private void linkSetting() {
-        final Intent intent = new Intent(this, Settings.class);
+        final Intent intent = new Intent(this, SettingsActivity.class);
 
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              Settings.this.startActivity(intent);
+              SettingsActivity.this.startActivity(intent);
             }
         });
     }
 
     private void linkReceipt() {
-        final Intent intent = new Intent(this, Receipt.class);
+        final Intent intent = new Intent(this, ReceiptActivity.class);
 
         receipt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              Settings.this.startActivity(intent);
+              SettingsActivity.this.startActivity(intent);
             }
         });
     }

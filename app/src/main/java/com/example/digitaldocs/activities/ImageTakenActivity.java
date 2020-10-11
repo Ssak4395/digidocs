@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.example.digitaldocs.R;
 
-public class onImageTaken extends AppCompatActivity {
+public class ImageTakenActivity extends AppCompatActivity {
 
     private TextView totalPriceText;
     private TextView abn;

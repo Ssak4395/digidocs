@@ -22,7 +22,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-public class profile_updateEdit extends AppCompatActivity {
+public class ProfileUpdateActivity extends AppCompatActivity {
     private EditText firstName,LastName,Email;
     private Button update;
     FirebaseAuth fAuth;
@@ -61,7 +61,7 @@ public class profile_updateEdit extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (Email.getText().toString().isEmpty()|| LastName.getText().toString().isEmpty() || firstName.getText().toString().isEmpty()){
-                    Toast.makeText(profile_updateEdit.this,"You havent made any changes",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileUpdateActivity.this,"You havent made any changes",Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -77,15 +77,15 @@ public class profile_updateEdit extends AppCompatActivity {
                         docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(profile_updateEdit.this,"Profile Updated",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ProfileUpdateActivity.this,"Profile Updated",Toast.LENGTH_SHORT).show();
                             }
                         });
-                        Toast.makeText(profile_updateEdit.this,"EMAIL HAS BEEN CHANGED",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProfileUpdateActivity.this,"EMAIL HAS BEEN CHANGED",Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(profile_updateEdit.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProfileUpdateActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 });
             }

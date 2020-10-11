@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.digitaldocs.R;
 
-public class LEGAL_UPDATE extends AppCompatActivity {
+public class LegalActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

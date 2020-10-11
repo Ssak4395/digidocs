@@ -50,7 +50,7 @@ import java.util.Arrays;
 import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 
-public class Camera extends AppCompatActivity {
+public class CameraActivity extends AppCompatActivity {
     private ImageButton camera;
     private  ImageButton profile;
     private ImageButton settings;
@@ -59,7 +59,7 @@ public class Camera extends AppCompatActivity {
     private String ABN;
     private String totalDouble;
     private String companyName;
-    private LoadingDialog loadingDialog;
+    private LoadingActivity loadingDialog;
     byte[] byteArray;
     Context context = this;
     private static final int PICK_IMAGE = 1;
@@ -83,7 +83,7 @@ public class Camera extends AppCompatActivity {
 
         accessGallery = findViewById(R.id.accessGallery);
         mCaptureBtn = findViewById(R.id.capture_image_btn);
-        loadingDialog = new LoadingDialog(this);
+        loadingDialog = new LoadingActivity(this);
 
         accessGallery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,7 +129,7 @@ public class Camera extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        //this method is called, when user pressed allowed or deny from premission request group
+        //this method is called, when user pressed allowed or deny from permission request group
         switch (requestCode) {
             case PERMISSION_CODE:{
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -175,45 +175,45 @@ public class Camera extends AppCompatActivity {
     }
 
     private void linkCamera() {
-        final Intent intent = new Intent(this, Camera.class);
+        final Intent intent = new Intent(this, CameraActivity.class);
 
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Camera.this.startActivity(intent);
+                CameraActivity.this.startActivity(intent);
             }
         });
     }
 
     private void linkProfile() {
-        final Intent intent = new Intent(this, Profile.class);
+        final Intent intent = new Intent(this, ProfileActivity.class);
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Camera.this.startActivity(intent);
+                CameraActivity.this.startActivity(intent);
             }
         });
     }
 
     private void linkSetting() {
-        final Intent intent = new Intent(this, Settings.class);
+        final Intent intent = new Intent(this, SettingsActivity.class);
 
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Camera.this.startActivity(intent);
+                CameraActivity.this.startActivity(intent);
             }
         });
     }
 
     private void linkReceipt() {
-        final Intent intent = new Intent(this, Receipt.class);
+        final Intent intent = new Intent(this, ReceiptActivity.class);
 
         receipt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Camera.this.startActivity(intent);
+                CameraActivity.this.startActivity(intent);
             }
         });
     }
@@ -431,7 +431,7 @@ public class Camera extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            final Intent intent = new Intent(context,onImageTaken.class);
+            final Intent intent = new Intent(context, ImageTakenActivity.class);
             System.out.println("The total price " + "$"+ totalDouble);
             System.out.println("The ABN Number of this business is: " + ABN);
             intent.putExtra("total",totalDouble);

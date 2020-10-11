@@ -9,8 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.digitaldocs.R;
 
-public class Gallery extends AppCompatActivity {
+public class GalleryActivity extends AppCompatActivity {
     private ImageView gallery;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +28,12 @@ public class Gallery extends AppCompatActivity {
 
 
     private void linkGallery() {
-        final Intent intent = new Intent(this, Gallery.class);
+        final Intent intent = new Intent(this, GalleryActivity.class);
 
         gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Gallery.this.startActivity(intent);
+                GalleryActivity.this.startActivity(intent);
             }
         });
     }

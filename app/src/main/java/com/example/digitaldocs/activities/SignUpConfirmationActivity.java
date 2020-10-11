@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.example.digitaldocs.R;
 
-public class SignUpConfirmation extends AppCompatActivity {
+public class SignUpConfirmationActivity extends AppCompatActivity {
     Button proceed;
 
     @Override
@@ -24,8 +24,8 @@ public class SignUpConfirmation extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 System.out.println("Button clicked.");
-                final Intent intent = new Intent(SignUpConfirmation.this, HomeActivity.class);
-                SignUpConfirmation.this.startActivity(intent);
+                final Intent intent = new Intent(SignUpConfirmationActivity.this, HomeActivity.class);
+                SignUpConfirmationActivity.this.startActivity(intent);
             }
         });
 

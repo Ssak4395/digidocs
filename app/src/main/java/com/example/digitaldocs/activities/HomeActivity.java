@@ -112,7 +112,7 @@ public class HomeActivity extends AppCompatActivity {
     }
     
     private void explodeForgotPassword() {
-        final Intent intent = new Intent(this, ForgotPassword.class);
+        final Intent intent = new Intent(this, ForgotPasswordActivity.class);
 
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +124,7 @@ public class HomeActivity extends AppCompatActivity {
     
 
     private void explodeSignUpScene() {
-        final Intent intent = new Intent(this, Sign_Up_Activity.class);
+        final Intent intent = new Intent(this, SignUpActivity.class);
 
         signUpPrompt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,7 +135,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void handleSignIn(String email, String password) {
-        final Intent intent = new Intent(this,dashboard.class);
+        final Intent intent = new Intent(this,DashboardActivity.class);
 
         firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
