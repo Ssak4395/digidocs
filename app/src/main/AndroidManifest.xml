@@ -35,7 +35,7 @@
 
 
         <activity
-            android:name=".activities.onImageTaken"
+            android:name=".activities.ImageTakenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_on_image_taken"
             android:theme="@style/FullscreenTheme">
