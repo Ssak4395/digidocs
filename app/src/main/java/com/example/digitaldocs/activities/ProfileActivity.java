@@ -34,6 +34,7 @@ public class ProfileActivity extends AppCompatActivity {
      private  ImageButton profile;
      private ImageButton settings;
      private ImageButton receipt;
+     private ImageButton search;
 
      /**
       * For the top part of profile page
@@ -57,6 +58,7 @@ public class ProfileActivity extends AppCompatActivity {
           linkProfile();
           linkReceipt();
           linkSetting();
+          linkSearch();
           linkExit();
           linkUpdate();
           name = findViewById(R.id.test);
@@ -92,6 +94,17 @@ public class ProfileActivity extends AppCompatActivity {
                }
           });
      }
+     private void linkSearch() {
+          final Intent intent = new Intent(this, SearchActivityPage.class);
+
+          search.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                    ProfileActivity.this.startActivity(intent);
+               }
+          });
+     }
+
 
      private void linkUpdate() {
           final Intent intent = new Intent(this, ProfileUpdateActivity.class);
@@ -155,6 +168,8 @@ public class ProfileActivity extends AppCompatActivity {
           profile = findViewById(R.id.dd);
           settings = findViewById(R.id.ee);
           receipt = findViewById(R.id.aa);
+          search = findViewById(R.id.bb);
+
      }
 
 }

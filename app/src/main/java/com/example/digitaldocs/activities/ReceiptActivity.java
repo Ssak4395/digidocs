@@ -14,6 +14,8 @@ public class ReceiptActivity extends AppCompatActivity {
     private  ImageButton profile;
     private ImageButton settings;
     private ImageButton receipt;
+    private ImageButton search;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class ReceiptActivity extends AppCompatActivity {
         linkProfile();
         linkReceipt();
         linkSetting();
+        linkSearch();
     }
 
     private void setScene() {
@@ -33,6 +36,7 @@ public class ReceiptActivity extends AppCompatActivity {
         profile = findViewById(R.id.profile_widget1);
         settings = findViewById(R.id.setting_widget1);
         receipt = findViewById(R.id.receipt_widget1);
+        search = findViewById(R.id.search_widget1);
     }
 
     private void linkCamera() {
@@ -45,6 +49,18 @@ public class ReceiptActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void linkSearch() {
+        final Intent intent = new Intent(this, SearchActivityPage.class);
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ReceiptActivity.this.startActivity(intent);
+            }
+        });
+    }
+
 
     private void linkProfile() {
         final Intent intent = new Intent(this, ProfileActivity.class);

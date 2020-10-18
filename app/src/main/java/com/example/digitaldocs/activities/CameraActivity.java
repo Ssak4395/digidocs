@@ -55,6 +55,7 @@ public class CameraActivity extends AppCompatActivity {
     private  ImageButton profile;
     private ImageButton settings;
     private ImageButton receipt;
+    private ImageButton search;
     private TextView accessGallery;
     private String ABN;
     private String totalDouble;
@@ -80,6 +81,7 @@ public class CameraActivity extends AppCompatActivity {
         linkProfile();
         linkReceipt();
         linkSetting();
+        linkSearch();
 
         accessGallery = findViewById(R.id.accessGallery);
         mCaptureBtn = findViewById(R.id.capture_image_btn);
@@ -172,6 +174,7 @@ public class CameraActivity extends AppCompatActivity {
         profile = findViewById(R.id.profile_widget2);
         settings = findViewById(R.id.setting_widget2);
         receipt = findViewById(R.id.receipt_widget2);
+        search = findViewById(R.id.search_widget2);
     }
 
     private void linkCamera() {
@@ -189,6 +192,16 @@ public class CameraActivity extends AppCompatActivity {
         final Intent intent = new Intent(this, ProfileActivity.class);
 
         profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CameraActivity.this.startActivity(intent);
+            }
+        });
+    }
+    private void linkSearch() {
+        final Intent intent = new Intent(this, SearchActivityPage.class);
+
+        search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CameraActivity.this.startActivity(intent);

@@ -16,6 +16,7 @@ public class SettingsActivity extends AppCompatActivity {
     private ImageButton receipt;
     private ImageButton legal;
     private ImageButton help;
+    private ImageButton search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class SettingsActivity extends AppCompatActivity {
         linkSetting();
         linkHelp();
         linkLegal();
+        linkSearch();
     }
 
     private void linkCamera() {
@@ -97,6 +99,16 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
     }
+    private void linkSearch() {
+        final Intent intent = new Intent(this, SearchActivityPage.class);
+
+       search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SettingsActivity.this.startActivity(intent);
+            }
+        });
+    }
 
     private void setScene() {
         legal = findViewById(R.id.legal_widget);
@@ -105,6 +117,7 @@ public class SettingsActivity extends AppCompatActivity {
         profile = findViewById(R.id.profile_setting);
         settings = findViewById(R.id.search_setting);
         receipt = findViewById(R.id.receipt_setting);
+        search = findViewById(R.id.search_setting);
     }
 
 }

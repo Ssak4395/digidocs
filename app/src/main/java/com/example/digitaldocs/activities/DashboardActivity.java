@@ -12,6 +12,7 @@ public class DashboardActivity extends AppCompatActivity {
     private ImageButton profile;
     private ImageButton settings;
     private ImageButton receipt;
+    private ImageButton search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class DashboardActivity extends AppCompatActivity {
         linkProfile();
         linkReceipt();
         linkSetting();
+        linkSearch();
     }
 
     private void setScene() {
@@ -30,6 +32,7 @@ public class DashboardActivity extends AppCompatActivity {
         profile = findViewById(R.id.profile_widget);
         settings = findViewById(R.id.setting_one);
         receipt = findViewById(R.id.receipt_widget);
+        search = findViewById(R.id.search_widget);
     }
 
     private void linkCamera() {
@@ -47,6 +50,16 @@ public class DashboardActivity extends AppCompatActivity {
         final Intent intent = new Intent(this, ProfileActivity.class);
 
         profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DashboardActivity.this.startActivity(intent);
+            }
+        });
+    }
+    private void linkSearch() {
+        final Intent intent = new Intent(this, SearchActivityPage.class);
+
+        search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DashboardActivity.this.startActivity(intent);
