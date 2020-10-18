@@ -4,6 +4,9 @@ import org.w3c.dom.Node;
 
 import java.lang.reflect.InvocationTargetException;
 
+/**
+ * Searches for the ABN in the receipt
+ */
 
 public class ABNSearchObject {
     private Node searchResultsPayload;

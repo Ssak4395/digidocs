@@ -6,6 +6,10 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Checking if password is valid and according to the rules we set out
+ */
+
 public class PasswordValidator {
 
     private Pattern pattern;

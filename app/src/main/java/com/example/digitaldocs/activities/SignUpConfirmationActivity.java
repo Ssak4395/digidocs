@@ -10,6 +10,10 @@ import android.widget.Button;
 import com.example.digitaldocs.R;
 
 public class SignUpConfirmationActivity extends AppCompatActivity {
+
+    /**
+     * The display which is going to be show when sign up is confirmed
+     */
     Button proceed;
 
     @Override

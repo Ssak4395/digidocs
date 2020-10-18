@@ -31,13 +31,22 @@ public class ReceiptActivity extends AppCompatActivity {
         linkSearch();
     }
 
+    /**
+     * Links each button to its id
+     */
+
     private void setScene() {
+
         camera = findViewById(R.id.camera_widget1);
         profile = findViewById(R.id.profile_widget1);
         settings = findViewById(R.id.setting_widget1);
         receipt = findViewById(R.id.receipt_widget1);
         search = findViewById(R.id.search_widget1);
     }
+
+    /**
+     * Accessing the camera from the receipt page
+     */
 
     private void linkCamera() {
         final Intent intent = new Intent(this, CameraActivity.class);
@@ -50,6 +59,10 @@ public class ReceiptActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Accessing the search page from the receipt page
+     */
+
     private void linkSearch() {
         final Intent intent = new Intent(this, SearchActivityPage.class);
 
@@ -61,6 +74,9 @@ public class ReceiptActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Accessing the profile page from the receipt page
+     */
 
     private void linkProfile() {
         final Intent intent = new Intent(this, ProfileActivity.class);
@@ -73,6 +89,10 @@ public class ReceiptActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Accessing the setting page from the receipt receipt page
+     */
+
     private void linkSetting() {
         final Intent intent = new Intent(this, SettingsActivity.class);
 
@@ -83,6 +103,10 @@ public class ReceiptActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Accessing the receipt page from the receipt page
+     */
 
     private void linkReceipt() {
         final Intent intent = new Intent(this, ReceiptActivity.class);

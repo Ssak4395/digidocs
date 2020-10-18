@@ -26,7 +26,11 @@ public class SearchActivityPage extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Displaying the search bar and been able to type in it
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

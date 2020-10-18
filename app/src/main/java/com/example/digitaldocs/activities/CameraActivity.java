@@ -177,6 +177,8 @@ public class CameraActivity extends AppCompatActivity {
         search = findViewById(R.id.search_widget2);
     }
 
+
+
     private void linkCamera() {
         final Intent intent = new Intent(this, CameraActivity.class);
 

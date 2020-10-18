@@ -34,6 +34,10 @@ public class SettingsActivity extends AppCompatActivity {
         linkSearch();
     }
 
+    /**
+     * Linking to the camera page from settings page
+     */
+
     private void linkCamera() {
         final Intent intent = new Intent(this, CameraActivity.class);
 
@@ -44,6 +48,10 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Linking to the legal page from the settings page
+     */
 
     private void linkLegal() {
         final Intent intent = new Intent(this, LegalActivity.class);
@@ -56,6 +64,10 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Linking to the help page from the settings page
+     */
+
     private void linkHelp() {
         final Intent intent = new Intent(this, HelpActivity.class);
 
@@ -67,6 +79,10 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Links to the profile page from the setting page
+     */
+
     private void linkProfile() {
         final Intent intent = new Intent(this, ProfileActivity.class);
 
@@ -77,6 +93,9 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
     }
+    /**
+     * Links to the setting page from the setting page
+     */
 
     private void linkSetting() {
         final Intent intent = new Intent(this, SettingsActivity.class);
@@ -89,6 +108,10 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Links to the receipt page from the settings page
+     */
+
     private void linkReceipt() {
         final Intent intent = new Intent(this, ReceiptActivity.class);
 
@@ -99,6 +122,10 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Links the setting page to the search bar
+     */
     private void linkSearch() {
         final Intent intent = new Intent(this, SearchActivityPage.class);
 
@@ -109,6 +136,10 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Links each button with its id
+     */
 
     private void setScene() {
         legal = findViewById(R.id.legal_widget);

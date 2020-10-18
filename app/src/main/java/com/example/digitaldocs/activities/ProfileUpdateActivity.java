@@ -22,6 +22,9 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+/**
+ * Class allowing the user to update their data
+ */
 public class ProfileUpdateActivity extends AppCompatActivity {
     private EditText firstName,LastName,Email;
     private Button update;

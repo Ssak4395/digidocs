@@ -9,6 +9,10 @@ import android.widget.TextView;
 
 import com.example.digitaldocs.R;
 
+/**
+ * Displays the data collected from the receipt
+ */
+
 public class ImageTakenActivity extends AppCompatActivity {
 
     private TextView totalPriceText;

@@ -6,6 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.digitaldocs.R;
 
+/**
+ * Class that will display all of the legal data for the app
+ */
+
 public class LegalActivity extends AppCompatActivity {
 
     @Override

@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.digitaldocs.R;
 
+/**
+ * Class that will be displaying scanned images
+ */
 public class GalleryActivity extends AppCompatActivity {
     private ImageView gallery;
 

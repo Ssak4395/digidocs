@@ -6,6 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.digitaldocs.R;
 
+/**
+ * class that will display all of the help information
+ */
+
 public class HelpActivity extends AppCompatActivity {
 
     @Override

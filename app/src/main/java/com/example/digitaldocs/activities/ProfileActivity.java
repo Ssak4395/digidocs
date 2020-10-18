@@ -24,6 +24,11 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+/**
+ * Class displaying user data from what they signed up, accessing it from the firebase firestore
+ */
+
+
 public class ProfileActivity extends AppCompatActivity {
      private Button exit;
 
@@ -104,6 +109,7 @@ public class ProfileActivity extends AppCompatActivity {
                }
           });
      }
+
 
 
      private void linkUpdate() {
