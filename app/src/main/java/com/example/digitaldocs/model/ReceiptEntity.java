@@ -8,7 +8,7 @@ public class ReceiptEntity {
     private String storeName;
     private String date;
     private List<String> lineItems;
-    private List<Float> lineItemPrices;
+    private List<String> lineItemPrices;
     private double totalPrice;
 
     /*
@@ -47,7 +47,7 @@ public class ReceiptEntity {
         return lineItems;
     }
 
-    public List<Float> getLineItemPrices() {
+    public List<String> getLineItemPrices() {
         return lineItemPrices;
     }
 

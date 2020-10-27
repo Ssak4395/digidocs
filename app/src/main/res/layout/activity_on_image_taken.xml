@@ -23,10 +23,10 @@
 
         <TextView
             android:id="@+id/abn"
-            android:layout_width="374dp"
-            android:layout_height="69dp"
-            android:layout_marginTop="320dp"
-            android:layout_marginEnd="32dp"
+            android:layout_width="330dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="184dp"
+            android:layout_marginEnd="52dp"
             android:text="ABN:"
             android:textColor="#000000"
             android:textSize="18sp"
@@ -35,10 +35,10 @@
 
         <TextView
             android:id="@+id/companyName"
-            android:layout_width="374dp"
-            android:layout_height="69dp"
-            android:layout_marginTop="412dp"
-            android:layout_marginEnd="32dp"
+            android:layout_width="352dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="252dp"
+            android:layout_marginEnd="40dp"
             android:text="Company Name:"
             android:textColor="#000000"
             android:textSize="18sp"
@@ -47,16 +47,26 @@
 
         <TextView
             android:id="@+id/totalPrice"
-            android:layout_width="392dp"
-            android:layout_height="79dp"
-            android:layout_marginTop="212dp"
+            android:layout_width="368dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="116dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:text="Total Price: "
             android:textColor="#000000"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ListView
+            android:id="@+id/lineView"
+            android:layout_width="374dp"
+            android:layout_height="312dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.567"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.828" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

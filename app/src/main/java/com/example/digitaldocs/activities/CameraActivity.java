@@ -159,7 +159,10 @@ public class CameraActivity extends AppCompatActivity {
                 image.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
                 byteArray = byteArrayOutputStream .toByteArray();
                 encodedBase64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
-               new tryCloudVisionAPI().execute(byteArray);
+                Intent intent = new Intent(this,imagePreview.class);
+                intent.putExtra("uri",image_uri);
+                startActivity(intent);
+             //  new tryCloudVisionAPI().execute(byteArray);
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -373,98 +376,98 @@ public class CameraActivity extends AppCompatActivity {
 //        return "88000014675";
 //    }
 
-    public class tryCloudVisionAPI extends AsyncTask<byte[],String,String>{
-        @Override
-        protected String doInBackground(byte[]... bytes) {
-            Vision.Builder visionBuilder = new Vision.Builder(
-                    new NetHttpTransport(),
-                    new AndroidJsonFactory(),
-                    null);
-
-            visionBuilder.setVisionRequestInitializer(
-                    new VisionRequestInitializer("AIzaSyD2p2Yc95RZ01oFNI9ox9yE2BhXR5X3rTw"));
-
-            Vision vision = visionBuilder.build();
-
-            Image image = new Image();
-            image.encodeContent(bytes[0]);
-            Feature desiredFeature = new Feature();
-            desiredFeature.setType("TEXT_DETECTION");
-
-            List<EntityAnnotation> results = new ArrayList<>();
-            AnnotateImageRequest request = new AnnotateImageRequest();
-            request.setImage(image);
-            request.setFeatures(Arrays.asList(desiredFeature));
-            BatchAnnotateImagesRequest batchRequest = new BatchAnnotateImagesRequest();
-            batchRequest.setRequests(Arrays.asList(request));
-            BatchAnnotateImagesResponse batchResponse = null;
-            try {
-                batchResponse = vision.images().annotate(batchRequest).execute();
-
-                for(AnnotateImageResponse res : batchResponse.getResponses())
-                {
-
-                    results = res.getTextAnnotations();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            algorithms algorithms = new algorithms();
-
-            try {
-                totalDouble = Double.toString(algorithms.startTotalStrategy(results));
-                ABN = algorithms.startABNStrategy(results);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            if (!ABN.equals("Algorithm could not detect a valid ABN")) {
-                try {
-                    companyName = AbnSearchWSHttpGet.searchByABN(guid,ABN,false).getOrganisationName();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (NoSuchMethodException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                } catch (URISyntaxException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (SAXException e) {
-                    e.printStackTrace();
-                } catch (ParserConfigurationException e) {
-                    e.printStackTrace();
-                }
-            }
-            return totalDouble;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            final Intent intent = new Intent(context, ImageTakenActivity.class);
-            System.out.println("The total price " + "$"+ totalDouble);
-            System.out.println("The ABN Number of this business is: " + ABN);
-            intent.putExtra("total",totalDouble);
-            intent.putExtra("abn",ABN);
-            intent.putExtra("company",companyName);
-
-            loadingDialog.startLoadingAnimation();
-
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    loadingDialog.dismissDialog();
-                    startActivity(intent);
-                }
-            },4000);
-        }
-    }
+//    public class tryCloudVisionAPI extends AsyncTask<byte[],String,String>{
+//        @Override
+//        protected String doInBackground(byte[]... bytes) {
+//            Vision.Builder visionBuilder = new Vision.Builder(
+//                    new NetHttpTransport(),
+//                    new AndroidJsonFactory(),
+//                    null);
+//
+//            visionBuilder.setVisionRequestInitializer(
+//                    new VisionRequestInitializer("AIzaSyD2p2Yc95RZ01oFNI9ox9yE2BhXR5X3rTw"));
+//
+//            Vision vision = visionBuilder.build();
+//
+//            Image image = new Image();
+//            image.encodeContent(bytes[0]);
+//            Feature desiredFeature = new Feature();
+//            desiredFeature.setType("TEXT_DETECTION");
+//
+//            List<EntityAnnotation> results = new ArrayList<>();
+//            AnnotateImageRequest request = new AnnotateImageRequest();
+//            request.setImage(image);
+//            request.setFeatures(Arrays.asList(desiredFeature));
+//            BatchAnnotateImagesRequest batchRequest = new BatchAnnotateImagesRequest();
+//            batchRequest.setRequests(Arrays.asList(request));
+//            BatchAnnotateImagesResponse batchResponse = null;
+//            try {
+//                batchResponse = vision.images().annotate(batchRequest).execute();
+//
+//                for(AnnotateImageResponse res : batchResponse.getResponses())
+//                {
+//
+//                    results = res.getTextAnnotations();
+//                }
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            algorithms algorithms = new algorithms();
+//
+//            try {
+//                totalDouble = Double.toString(algorithms.startTotalStrategy(results));
+//                ABN = algorithms.startABNStrategy(results);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            if (!ABN.equals("Algorithm could not detect a valid ABN")) {
+//                try {
+//                    companyName = AbnSearchWSHttpGet.searchByABN(guid,ABN,false).getOrganisationName();
+//                } catch (ClassNotFoundException e) {
+//                    e.printStackTrace();
+//                } catch (NoSuchMethodException e) {
+//                    e.printStackTrace();
+//                } catch (IllegalAccessException e) {
+//                    e.printStackTrace();
+//                } catch (InvocationTargetException e) {
+//                    e.printStackTrace();
+//                } catch (URISyntaxException e) {
+//                    e.printStackTrace();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                } catch (SAXException e) {
+//                    e.printStackTrace();
+//                } catch (ParserConfigurationException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            return totalDouble;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String s) {
+//            super.onPostExecute(s);
+//            final Intent intent = new Intent(context, ImageTakenActivity.class);
+//            System.out.println("The total price " + "$"+ totalDouble);
+//            System.out.println("The ABN Number of this business is: " + ABN);
+//            intent.putExtra("total",totalDouble);
+//            intent.putExtra("abn",ABN);
+//            intent.putExtra("company",companyName);
+//
+//            loadingDialog.startLoadingAnimation();
+//
+//            Handler handler = new Handler();
+//            handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    loadingDialog.dismissDialog();
+//                    startActivity(intent);
+//                }
+//            },4000);
+//        }
+//    }
 
 
 

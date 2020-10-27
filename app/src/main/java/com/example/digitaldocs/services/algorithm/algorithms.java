@@ -5,6 +5,8 @@ import com.google.api.services.vision.v1.model.Vertex;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class algorithms {
@@ -95,5 +97,100 @@ public class algorithms {
         }
         return Long.toString(rawABN);
     }
+
+
+
+    public ArrayList<ArrayList<String>> generateLineItems(List<EntityAnnotation> entityAnnotations) throws IOException {
+
+        // We dont need to touch bounding box coordinates because we are going on the assumption that the user will accurately
+        List<EntityAnnotation> ents = entityAnnotations;
+        ArrayList<String> lineItems = new ArrayList<>();
+        ArrayList<String> linePrices = new ArrayList<>();
+
+
+        String description =   ents.get(0).getDescription();
+        String[] arr = description.split("\\r?\\n");
+        ArrayList<String> sentence = new ArrayList<String>(Arrays.asList(arr));
+
+
+        //Lets save and store the prices for all the items.
+
+        //Remove any miscellanous words, usually these consist of line items that have less than 6 words, since the probability of this being a item in a reciept is extremely low
+        // Rather it could be an OCR malfunction,
+
+
+
+        for(int i = 0; i<sentence.size(); ++i) {
+            try {
+                double price = Double.parseDouble(sentence.get(i).replace("$",""));
+                linePrices.add(sentence.get(i));
+
+            } catch (NumberFormatException e) {
+            }
+        }
+        // Stage 2 we now have removed all the prices from our line items, we are not left with Line Items only, however further processing still needs to be done.
+        for(int i = 0; i<sentence.size(); ++i)
+        {
+            for(int j = 0; j<linePrices.size(); ++j)
+            {
+                if(sentence.get(i).equals(linePrices.get(j)))
+                {
+                    sentence.remove(i);
+                }
+            }
+        }
+
+        for(int i = 0; i<sentence.size(); ++i)
+        {
+            if(sentence.get(i).contains("@") | sentence.get(i).contains("Quantity") | sentence.get(i).contains("NET"))
+            {
+                sentence.remove(i);
+            }
+            if(sentence.get(i).length() < 6)
+            {
+                sentence.remove(i);
+            }
+
+        }
+        if(sentence.size() - linePrices.size() == 1)
+        {
+            sentence.remove(sentence.size()-1);
+        }
+        if(isParseable(sentence.size(), linePrices.size()))
+        {
+            lineItems = sentence;
+            for(int i = 0; i<lineItems.size(); ++i)
+            {
+                System.out.println("Item Name: " + lineItems.get(i) +" " + "Item Price: " + "$" + linePrices.get(i));
+            }
+
+        }
+        for(int i = 0; i<lineItems.size(); ++i)
+        {
+            System.out.println(lineItems.get(i));
+        }
+        for(int i = 0; i<linePrices.size(); ++i)
+        {
+            System.out.println(linePrices.get(i));
+        }
+
+        ArrayList<ArrayList<String>> lineAndPrice = new ArrayList<>();
+        lineAndPrice.add(lineItems);
+        lineAndPrice.add(linePrices);
+
+        System.out.println(lineItems.size());
+        System.out.println(linePrices.size());
+        return lineAndPrice;
+
+
+
+
+
+    }
+    boolean isParseable(int lineItems, int priceItems)
+    {
+        return lineItems == priceItems;
+    }
+
 
 }

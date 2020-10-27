@@ -8,4 +8,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_image_captured">FullscreenActivity</string>
     <string name="title_activity_on_image_taken">FullscreenActivity</string>
+    <string name="title_activity_image_preview">FullscreenActivity</string>
+    <string name="title_activity_crop">FullscreenActivity</string>
+    <string name="title_activity_parse">FullscreenActivity</string>
 </resources>
